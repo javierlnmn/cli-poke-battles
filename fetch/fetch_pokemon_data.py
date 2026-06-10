@@ -26,6 +26,8 @@ POKEMON_FIELDS = [
     "abilities",
 ]
 
+GEN1_VERSION_GROUPS = {"red-blue", "yellow"}
+
 COLOR_MAP = {
     "black": "white",
     "blue": "blue",
@@ -76,9 +78,28 @@ def species_color(session, raw):
     return COLOR_MAP.get(species["color"]["name"], "white")
 
 
+def gen1_move(entry):
+    by_version_group = {}
+    for detail in entry["version_group_details"]:
+        version_group = detail["version_group"]["name"]
+        if version_group in GEN1_VERSION_GROUPS:
+            by_version_group.setdefault(version_group, []).append(
+                {
+                    "move_learn_method": detail["move_learn_method"]["name"],
+                    "level_learned_at": detail["level_learned_at"],
+                }
+            )
+
+    learn_details = by_version_group.get("red-blue") or by_version_group.get("yellow")
+    if not learn_details:
+        return None
+
+    return {"name": entry["move"]["name"], "learn_details": learn_details}
+
+
 def trim_pokemon(session, raw):
     data = {field: raw[field] for field in POKEMON_FIELDS}
-    data["moves"] = sorted({move["move"]["name"] for move in raw["moves"]})
+    data["moves"] = [move for move in (gen1_move(entry) for entry in raw["moves"]) if move]
     data["color"] = species_color(session, raw)
     return data
 
