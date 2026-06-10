@@ -1,8 +1,0 @@
-asciimatics==1.14.0
-clear-screen==0.1.14
-colorama==0.4.6
-pick==2.2.0
-prompt-toolkit==3.0.36
-pyfiglet==1.0.2
-questionary==2.0.1
-wcwidth==0.2.7
