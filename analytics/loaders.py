@@ -1,0 +1,63 @@
+import pandas as pd
+
+from config.config import (
+    POKEMON_DATA_FILE_PATH,
+    POKEMON_MOVES_FILE_PATH,
+)
+from utils.general import read_file_data
+
+STAT_COLUMNS = [
+    "hp",
+    "attack",
+    "defense",
+    "special-attack",
+    "special-defense",
+    "speed",
+]
+
+
+def load_pokemon_df() -> pd.DataFrame:
+    raw = read_file_data(POKEMON_DATA_FILE_PATH)
+
+    rows = []
+    for pokemon in raw.values():
+        row = {
+            "id": pokemon["id"],
+            "name": pokemon["name"],
+            "height": pokemon["height"],
+            "weight": pokemon["weight"],
+            "base_experience": pokemon["base_experience"],
+            "color": pokemon.get("color"),
+            "types": [entry["type"]["name"] for entry in pokemon["types"]],
+        }
+        for entry in pokemon["stats"]:
+            row[entry["stat"]["name"]] = entry["base_stat"]
+        rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
+def load_moves_df() -> pd.DataFrame:
+    raw = read_file_data(POKEMON_MOVES_FILE_PATH)
+
+    rows = [
+        {
+            "name": move["name"],
+            "type": move["type"]["name"],
+            "damage_class": move["damage_class"]["name"],
+            "power": move["power"],
+            "accuracy": move["accuracy"],
+            "pp": move["pp"],
+        }
+        for move in raw.values()
+    ]
+
+    return pd.DataFrame(rows)
+
+
+def pokemon_type_counts(pokemon_df: pd.DataFrame) -> pd.Series:
+    return pokemon_df.explode("types")["types"].value_counts()
+
+
+def move_type_counts(moves_df: pd.DataFrame) -> pd.Series:
+    return moves_df["type"].value_counts()
