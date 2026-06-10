@@ -1,0 +1,152 @@
+import random
+import time
+from dataclasses import dataclass
+from typing import ClassVar
+
+import clear_screen
+import questionary
+
+from config.config import (
+    POKEMON_DATA_FILE_PATH,
+)
+from entities.moves import PokemonMove
+from entities.types import PokemonType
+from utils.ascii_art import (
+    reset_console_ansi_escapes,
+    set_console_color,
+)
+from utils.general import read_file_data
+
+pokemon_file_data = read_file_data(POKEMON_DATA_FILE_PATH)
+
+
+@dataclass(frozen=True)
+class PokemonStats:
+    hp: int
+    attack: int
+    defense: int
+    sp_attack: int
+    sp_defense: int
+    speed: int
+
+
+@dataclass(frozen=True)
+class Pokemon:
+    id: int
+    name: str
+    visible_name: str
+    base_experience: int
+    stats: PokemonStats
+    types: list[PokemonType]
+    moves: list[PokemonMove]
+    color: str
+
+    _cache: ClassVar[dict] = {}
+
+    @classmethod
+    def from_json_data(cls, data) -> "PokemonType":
+        stats = {}
+        for stat in data["stats"]:
+            stats[stat["stat"]["name"]] = stat["base_stat"]
+
+        types_list = [PokemonType.get(type["type"]["name"]) for type in data["types"]]
+
+        # TODO: Implement moves picking system
+        moves_list = []
+
+        return cls(
+            id=data["id"],
+            name=data["name"],
+            visible_name=data["name"].capitalize(),
+            base_experience=data["base_experience"],
+            stats=PokemonStats(**stats),
+            types=types_list,
+            moves=moves_list,
+            color=data["color"],
+        )
+
+    @classmethod
+    def get(cls, name_id: str) -> "Pokemon":
+        key = name_id.lower()
+
+        if key not in cls._cache:
+            pokemon_data = pokemon_file_data.get(key)
+            if not pokemon_data:
+                raise ValueError(f"Pokemon '{name_id}' not found")
+
+            cls._cache[key] = cls.from_json_data(pokemon_data)
+
+        return cls._cache[key]
+
+
+# def user_choose_pokemon() -> Pokemon:
+#     pokemon_list = []
+
+#     for name in pokemon_file_data:
+#         pokemon_data = pokemon_file_data[name]
+
+#         pokemon = Pokemon(
+#             name=name,
+#             visible_name=pokemon_data["visible_name"],
+#             type=pokemon_data["type"],
+#             color=pokemon_data["color"],
+#             stats=pokemon_data["stats"],
+#             moves=pokemon_data["moves"],
+#         )
+
+#         pokemon_list.append(pokemon)
+
+#     pokemon_choose_list = [pokemon.visible_name for pokemon in pokemon_list]
+
+#     confirmed = False
+
+#     while not confirmed:
+#         clear_screen.clear()
+#         time.sleep(0.8)
+
+#         print(
+#             "Select a "
+#             + set_console_color("blue")
+#             + "Pokè"
+#             + set_console_color("yellow")
+#             + "mon"
+#             + reset_console_ansi_escapes()
+#             + "\n"
+#         )
+
+#         selected_pokemon_name = questionary.select(
+#             "",
+#             qmark="",
+#             choices=pokemon_choose_list,
+#         ).ask()
+
+#         clear_screen.clear()
+#         time.sleep(0.8)
+
+#         confirmed = questionary.confirm("Do you want to choose " + str(selected_pokemon_name) + "?").ask()
+
+#         if confirmed:
+#             selected_pokemon = next(
+#                 pokemon for pokemon in pokemon_list if pokemon.visible_name == selected_pokemon_name
+#             )
+#             break
+
+#     return selected_pokemon
+
+
+# def random_pokemon() -> Pokemon:
+#     pokemon_list_names = list(pokemon_file_data.keys())
+#     pokemon_index = random.randint(0, len(pokemon_file_data) - 1)
+#     selected_pokemon_name = pokemon_list_names[pokemon_index]
+#     pokemon_data = pokemon_file_data[selected_pokemon_name]
+
+#     pokemon = Pokemon(
+#         name=selected_pokemon_name,
+#         visible_name=pokemon_data["visible_name"],
+#         type=pokemon_data["type"],
+#         color=pokemon_data["color"],
+#         stats=pokemon_data["stats"],
+#         moves=pokemon_data["moves"],
+#     )
+
+#     return pokemon
