@@ -1,11 +1,11 @@
-import clear_screen
-import questionary
-
 import time
 
+import clear_screen
+
 from game.battle import Battle
-from game.pokemon import user_choose_pokemon, random_pokemon
-from utils.ascii_art import print_full_screen_title_animation, print_full_screen_title, get_random_color
+from game.pokemon import random_pokemon, user_choose_pokemon
+from utils.ascii_art import print_full_screen_title_animation
+
 
 class Game:
 
@@ -36,8 +36,8 @@ class Game:
         print_full_screen_title_animation("Battle!")
 
         current_battle = Battle(selected_pokemon, enemy_pokemon)
-        
+
         current_battle.play_battle()
-        
+
         clear_screen.clear()
         time.sleep(0.8)

@@ -1,12 +1,12 @@
-from colorama import Fore, Back, Style
-import pyfiglet
-import clear_screen
-
 import inspect
+import os
 import random
 import shutil
 import time
-import os
+
+import clear_screen
+import pyfiglet
+from colorama import Back, Fore, Style
 
 from config.config import POKEMON_ASCII_ART_PATH
 
@@ -52,7 +52,7 @@ def print_full_screen_title(title_text, color, font="slant"):
     padding_lines_top = ((terminal_height-7) - len(ascii_art.splitlines())) // 2
     padding_lines_bottom = (terminal_height-7) - len(ascii_art.splitlines()) - padding_lines_top
 
-    
+
     print(set_console_color(color))
     print("\n" * padding_lines_top)
     for line in ascii_art.splitlines():
@@ -60,7 +60,7 @@ def print_full_screen_title(title_text, color, font="slant"):
     print("\n" * padding_lines_bottom)
     print(reset_console_ansi_escapes())
 
-    
+
 def print_full_screen_title_animation(title_text, font="slant"):
     clear_screen.clear()
     for i in range(0, 3):
@@ -68,24 +68,24 @@ def print_full_screen_title_animation(title_text, font="slant"):
         time.sleep(.5)
         clear_screen.clear()
         time.sleep(.5)
-        
+
 def save_pokemon_ascii_art(ascii_art, pokemon_name):
 
     file_name = pokemon_name
-    file_content = ascii_art     
-    
+    file_content = ascii_art
+
     try:
-    
+
         if not os.path.exists(POKEMON_ASCII_ART_PATH):
             os.makedirs(POKEMON_ASCII_ART_PATH)
 
         file_path = os.path.join(POKEMON_ASCII_ART_PATH, file_name)
-        
+
         with open(file_path, "w") as file:
             file.write(file_content)
-            
+
         print("Ascii art saved to file "+file_path+".")
-            
+
     except OSError as e:
         print(f"Error: {e}")
     except Exception as e:

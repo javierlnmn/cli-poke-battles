@@ -13,7 +13,7 @@
             "sp_defense": 50,
             "speed": 90
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "thunder_shock"
         ]
@@ -32,7 +32,7 @@
             "sp_defense": 50,
             "speed": 65
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "ember"
         ]
@@ -51,7 +51,7 @@
             "sp_defense": 65,
             "speed": 45
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "tail_whip"
         ]
@@ -70,7 +70,7 @@
             "sp_defense": 95,
             "speed": 60
         },
-        "abilities": [
+        "moves": [
             "surf",
             "water_gun",
             "ice_beam"
@@ -91,7 +91,7 @@
             "sp_defense": 100,
             "speed": 81
         },
-        "abilities": [
+        "moves": [
             "surf",
             "dragon_dance"
         ]
@@ -111,7 +111,7 @@
             "sp_defense": 95,
             "speed": 70
         },
-        "abilities": [
+        "moves": [
             "water_gun",
             "icy_wind"
         ]
@@ -131,7 +131,7 @@
             "sp_defense": 35,
             "speed": 80
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "lick",
             "acid_spray"
@@ -152,7 +152,7 @@
             "sp_defense": 80,
             "speed": 65
         },
-        "abilities": [
+        "moves": [
             "fury_cutter",
             "metal_claw"
         ]
@@ -172,7 +172,7 @@
             "sp_defense": 85,
             "speed": 100
         },
-        "abilities": []
+        "moves": []
     },
     "squirtle": {
         "visible_name": "Squirtle",
@@ -188,7 +188,7 @@
             "sp_defense": 64,
             "speed": 43
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "water_gun"
         ]
@@ -208,7 +208,7 @@
             "sp_defense": 25,
             "speed": 20
         },
-        "abilities": [
+        "moves": [
             "sing",
             "pound"
         ]
@@ -227,7 +227,7 @@
             "sp_defense": 35,
             "speed": 35
         },
-        "abilities": [
+        "moves": [
             "tackle",
             "karate_chop"
         ]
@@ -246,7 +246,7 @@
             "sp_defense": 65,
             "speed": 55
         },
-        "abilities": [
+        "moves": [
             "quick_attack",
             "bite"
         ]
@@ -265,7 +265,7 @@
             "sp_defense": 65,
             "speed": 65
         },
-        "abilities": [
+        "moves": [
             "ember",
             "tail_whip"
         ]
@@ -284,7 +284,7 @@
             "sp_defense": 40,
             "speed": 90
         },
-        "abilities": [
+        "moves": [
             "scratch",
             "bite"
         ]
@@ -303,7 +303,7 @@
             "sp_defense": 50,
             "speed": 55
         },
-        "abilities": [
+        "moves": [
             "water_gun",
             "confusion"
         ]
@@ -322,7 +322,7 @@
             "sp_defense": 50,
             "speed": 60
         },
-        "abilities": [
+        "moves": [
             "ember",
             "bite"
         ]

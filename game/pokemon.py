@@ -1,29 +1,29 @@
-import questionary
-import clear_screen
+import random
 import time
 
-import random
-
-from utils.general import read_file_data
-from utils.pokemon import read_ascii_art
-from utils.ascii_art import (
-    set_console_color,
-    set_console_style,
-    reset_console_ansi_escapes,
-    reset_console_color,
-)
+import clear_screen
+import questionary
 
 from config.config import (
-    POKEMON_DATA_FILE_PATH,
-    POKEMON_TYPES_FILE_PATH,
-    POKEMON_ABILITIES_FILE_PATH,
-    POKEMON_ASCII_ART_PATH,
     DEFAULT_HEALTH_BAR_LENGTH,
+    POKEMON_ASCII_ART_PATH,
+    POKEMON_DATA_FILE_PATH,
+    POKEMON_MOVES_FILE_PATH,
+    POKEMON_TYPES_FILE_PATH,
 )
+from utils.ascii_art import (
+    reset_console_ansi_escapes,
+    reset_console_color,
+    set_console_color,
+    set_console_style,
+)
+from utils.general import read_file_data
+from utils.pokemon import read_ascii_art
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
-pokemon_abilities = read_file_data(POKEMON_ABILITIES_FILE_PATH)
+pokemon_moves = read_file_data(POKEMON_MOVES_FILE_PATH)
 pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
+
 
 class Type:
     type_data = pokemon_types
@@ -41,7 +41,7 @@ class Type:
         return cls.type_data.get(pokemon_type, {}).get("immune_against", [])
 
 
-class Ability:
+class Move:
     def __init__(self, name, visible_name, type, category, pokemon_affected, accuracy):
         self.name = name
         self.visible_name = visible_name
@@ -49,7 +49,7 @@ class Ability:
         self.category = category
         self.pokemon_affected = pokemon_affected
         self.accuracy = accuracy
-    
+
     def __str__(self) -> str:
         return (
             str(self.name)
@@ -63,7 +63,7 @@ class Ability:
 
 
 class Pokemon:
-    def __init__(self, name, visible_name, type, color, stats, abilities):
+    def __init__(self, name, visible_name, type, color, stats, moves):
         self.name = name
         self.visible_name = visible_name
         self.type = type
@@ -71,16 +71,16 @@ class Pokemon:
         self.stats = stats
         self.current_hp = int(stats["hp"])
         self.current_status = None
-        self.abilities = [
-            Ability(
-                ability,
-                pokemon_abilities[ability]["visible_name"],
-                pokemon_abilities[ability]["type"],
-                pokemon_abilities[ability]["category"],
-                pokemon_abilities[ability]["pokemon_affected"],
-                pokemon_abilities[ability]["accuracy"],
+        self.moves = [
+            Move(
+                move,
+                pokemon_moves[move]["visible_name"],
+                pokemon_moves[move]["type"],
+                pokemon_moves[move]["category"],
+                pokemon_moves[move]["pokemon_affected"],
+                pokemon_moves[move]["accuracy"],
             )
-            for ability in abilities
+            for move in moves
         ]
         self.status = None
 
@@ -90,7 +90,7 @@ class Pokemon:
             + "\n"
             + str(self.type)
             + "\n"
-            + str(self.abilities)
+            + str(self.moves)
             + "\n"
             + str(self.stats)
         )
@@ -118,8 +118,9 @@ class Pokemon:
     def get_visual_stats_sprite(self) -> str:
         max_hp = self.stats["hp"]
         current_hp = self.current_hp
-        health_percentage = int((current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH - 2) # we subtract 2 from the length to add the [] characters
-                                
+        health_percentage = int(
+            (current_hp / max_hp) * DEFAULT_HEALTH_BAR_LENGTH - 2
+        )  # we subtract 2 from the length to add the [] characters
 
         health_indicator = (
             "HP: "
@@ -143,7 +144,10 @@ class Pokemon:
             + "["
             + reset_console_color()
             + "#" * health_percentage
-            + "-" * ((DEFAULT_HEALTH_BAR_LENGTH - 2) - health_percentage) # we subtract 2 from the length to add the [] characters
+            + "-"
+            * (
+                (DEFAULT_HEALTH_BAR_LENGTH - 2) - health_percentage
+            )  # we subtract 2 from the length to add the [] characters
             + set_console_color(self.color)
             + "]"
             + reset_console_color()
@@ -155,21 +159,17 @@ class Pokemon:
 
         return combined_sprite
 
-    def get_abilities_visible_name_list(self) -> list:
-        return [ability.visible_name for ability in self.abilities]
+    def get_moves_visible_name_list(self) -> list:
+        return [move.visible_name for move in self.moves]
 
-    def get_ability_by_visible_name(self, ability_visible_name) -> Ability:
+    def get_move_by_visible_name(self, move_visible_name) -> Move:
         return next(
-            (
-                ability
-                for ability in self.abilities
-                if ability.visible_name == ability_visible_name
-            ),
+            (move for move in self.moves if move.visible_name == move_visible_name),
             None,
         )
 
-    def pick_random_ability(self) -> Ability:
-        return random.choice(self.abilities)
+    def pick_random_move(self) -> Move:
+        return random.choice(self.moves)
 
     def apply_status_effect(self, battle):
 
@@ -188,7 +188,7 @@ def user_choose_pokemon() -> Pokemon:
             type=pokemon_data["type"],
             color=pokemon_data["color"],
             stats=pokemon_data["stats"],
-            abilities=pokemon_data["abilities"],
+            moves=pokemon_data["moves"],
         )
 
         pokemon_list.append(pokemon)
@@ -247,7 +247,7 @@ def random_pokemon() -> Pokemon:
         type=pokemon_data["type"],
         color=pokemon_data["color"],
         stats=pokemon_data["stats"],
-        abilities=pokemon_data["abilities"],
+        moves=pokemon_data["moves"],
     )
 
     return pokemon
