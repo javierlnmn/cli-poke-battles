@@ -8,9 +8,8 @@ from config.config import (
     DEFAULT_HEALTH_BAR_LENGTH,
     POKEMON_ASCII_ART_PATH,
     POKEMON_DATA_FILE_PATH,
-    POKEMON_MOVES_FILE_PATH,
-    POKEMON_TYPES_FILE_PATH,
 )
+from game.pokemon.moves import Move, pokemon_moves
 from utils.ascii_art import (
     reset_console_ansi_escapes,
     reset_console_color,
@@ -21,45 +20,6 @@ from utils.general import read_file_data
 from utils.pokemon import read_ascii_art
 
 pokemon_list_data = read_file_data(POKEMON_DATA_FILE_PATH)
-pokemon_moves = read_file_data(POKEMON_MOVES_FILE_PATH)
-pokemon_types = read_file_data(POKEMON_TYPES_FILE_PATH)
-
-
-class Type:
-    type_data = pokemon_types
-
-    @classmethod
-    def get_weaknesses(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("weak_against", [])
-
-    @classmethod
-    def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("strong_against", [])
-
-    @classmethod
-    def get_strengths(cls, pokemon_type):
-        return cls.type_data.get(pokemon_type, {}).get("immune_against", [])
-
-
-class Move:
-    def __init__(self, name, visible_name, type, category, pokemon_affected, accuracy):
-        self.name = name
-        self.visible_name = visible_name
-        self.type = type
-        self.category = category
-        self.pokemon_affected = pokemon_affected
-        self.accuracy = accuracy
-
-    def __str__(self) -> str:
-        return (
-            str(self.name)
-            + "\n"
-            + str(self.type)
-            + "\n"
-            + str(self.category)
-            + "\n"
-            + str(self.pokemon_affected)
-        )
 
 
 class Pokemon:
@@ -132,7 +92,6 @@ class Pokemon:
             + str(max_hp)
         )
 
-        # ansii characters are counted as well
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
         health_indicator += (" ") * (
@@ -172,7 +131,6 @@ class Pokemon:
         return random.choice(self.moves)
 
     def apply_status_effect(self, battle):
-
         return
 
 
@@ -214,7 +172,7 @@ def user_choose_pokemon() -> Pokemon:
         selected_pokemon_name = questionary.select(
             "",
             qmark="",
-            choices=pokemon_choose_list,  # Use a lambda function
+            choices=pokemon_choose_list,
         ).ask()
 
         clear_screen.clear()

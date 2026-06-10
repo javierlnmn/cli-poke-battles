@@ -1,6 +1,7 @@
 # Different keywords and global configuration variables will be stored in here
 
 # Paths to assets
+ASSETS_PATH = "assets"
 POKEMON_ASCII_ART_PATH = "assets/ascii_art/pokemon_ascii/"
 TEXT_ASCII_ART_PATH = "assets/ascii_art/pokemon_ascii/"
 POKEMON_DATA_FILE_PATH = "assets/pokemon_data.json"
