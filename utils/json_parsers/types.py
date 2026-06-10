@@ -1,4 +1,4 @@
-from game.pokemon.types import PokemonTypeData
+from game.entities.types import PokemonTypeData
 
 
 def parse_type_json_data(data) -> PokemonTypeData:

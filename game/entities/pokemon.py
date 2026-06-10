@@ -9,7 +9,7 @@ from config.config import (
     POKEMON_ASCII_ART_PATH,
     POKEMON_DATA_FILE_PATH,
 )
-from game.pokemon.moves import Move, pokemon_moves
+from game.entities.moves import Move, pokemon_moves
 from utils.ascii_art import (
     reset_console_ansi_escapes,
     reset_console_color,
@@ -45,15 +45,7 @@ class Pokemon:
         self.status = None
 
     def __repr__(self) -> str:
-        return (
-            str(self.name)
-            + "\n"
-            + str(self.type)
-            + "\n"
-            + str(self.moves)
-            + "\n"
-            + str(self.stats)
-        )
+        return str(self.name) + "\n" + str(self.type) + "\n" + str(self.moves) + "\n" + str(self.stats)
 
     def __str__(self) -> str:
         return (
@@ -69,10 +61,7 @@ class Pokemon:
     def get_ascii_art_color(self) -> str:
         ascii_art = read_ascii_art(POKEMON_ASCII_ART_PATH, self.name)
         lines = ascii_art.split("\n")
-        colored_lines = [
-            f"{set_console_color(self.color)}{line}{reset_console_color()}"
-            for line in lines
-        ]
+        colored_lines = [f"{set_console_color(self.color)}{line}{reset_console_color()}" for line in lines]
         return "\n".join(colored_lines)
 
     def get_visual_stats_sprite(self) -> str:
@@ -94,9 +83,7 @@ class Pokemon:
 
         unstyled_health_indicator = "HP: " + str(current_hp) + " / " + str(max_hp)
 
-        health_indicator += (" ") * (
-            (DEFAULT_HEALTH_BAR_LENGTH) - len(unstyled_health_indicator)
-        )
+        health_indicator += (" ") * ((DEFAULT_HEALTH_BAR_LENGTH) - len(unstyled_health_indicator))
 
         health_bar = (
             set_console_color(self.color)
@@ -178,15 +165,11 @@ def user_choose_pokemon() -> Pokemon:
         clear_screen.clear()
         time.sleep(0.8)
 
-        confirmed = questionary.confirm(
-            "Do you want to choose " + str(selected_pokemon_name) + "?"
-        ).ask()
+        confirmed = questionary.confirm("Do you want to choose " + str(selected_pokemon_name) + "?").ask()
 
         if confirmed:
             selected_pokemon = next(
-                pokemon
-                for pokemon in pokemon_list
-                if pokemon.visible_name == selected_pokemon_name
+                pokemon for pokemon in pokemon_list if pokemon.visible_name == selected_pokemon_name
             )
             break
 

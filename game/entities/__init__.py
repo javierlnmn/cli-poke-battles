@@ -1,3 +1,3 @@
-from game.pokemon.moves import Move
-from game.pokemon.pokemon import Pokemon, random_pokemon, user_choose_pokemon
-from game.pokemon.types import Type
+from game.entities.moves import Move
+from game.entities.pokemon import Pokemon, random_pokemon, user_choose_pokemon
+from game.entities.types import Type

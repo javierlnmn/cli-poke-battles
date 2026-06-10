@@ -1,4 +1,4 @@
-from game.pokemon.moves import MoveMeta, PokemonMoveData
+from game.entities.moves import MoveMeta, PokemonMoveData
 
 
 def parse_move_json_data(data) -> PokemonMoveData:
