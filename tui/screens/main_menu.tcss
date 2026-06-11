@@ -1,0 +1,28 @@
+MainMenuScreen {
+    align-horizontal: center;
+    align-vertical: middle;
+}
+
+.logo {
+    color: $secondary;
+    width: auto;
+    text-style: bold;
+}
+
+.subtitle-container {
+    padding-top: 2;
+    width: 64;
+    text-align: center;
+    color: $secondary;
+    text-style: bold;
+}
+
+.subtitle-link {
+    color: $accent;
+}
+
+.buttons-container {
+    width: 64;
+    padding-top: 3;
+    align-horizontal: center;
+}
