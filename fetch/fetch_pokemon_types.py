@@ -7,7 +7,8 @@ import requests
 from config.config import ASSETS_PATH, POKEMON_TYPES_FILE_PATH
 from schemas import TypeJson
 
-LAST_TYPE_ID = 16
+TYPES_AMOUNT = 19
+EXCLUDE_TYPE_NAMES = {"dark", "fairy", "stellar", "unknown"}
 
 TYPE_FIELDS = [
     "id",
@@ -18,7 +19,13 @@ TYPE_FIELDS = [
 
 
 def trim_type(raw) -> TypeJson:
-    return {field: raw[field] for field in TYPE_FIELDS}
+    for _, damage_relations_list in raw["damage_relations"].items():
+        for index, relation_type in enumerate(damage_relations_list):
+            if relation_type["name"] in EXCLUDE_TYPE_NAMES:
+                damage_relations_list.pop(index)
+
+    data = {field: raw[field] for field in TYPE_FIELDS}
+    return data
 
 
 def main():
@@ -26,9 +33,14 @@ def main():
     session = requests.Session()
 
     types = {}
-    for ref in range(1, LAST_TYPE_ID + 1):
+    for ref in range(1, TYPES_AMOUNT + 1):
         raw = session.get(f"https://pokeapi.co/api/v2/type/{ref}", timeout=20).json()
-        types[raw["name"]] = trim_type(raw)
+        type_name_key = raw["name"]
+
+        if type_name_key in EXCLUDE_TYPE_NAMES:
+            continue
+
+        types[type_name_key] = trim_type(raw)
         print(f"[{ref:3}] {raw['name']}")
         time.sleep(0.05)
 
