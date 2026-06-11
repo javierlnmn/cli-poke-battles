@@ -6,10 +6,13 @@ import time
 import requests
 from PIL import Image
 
-from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
+from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH, POKEMON_MOVES_FILE_PATH
 from schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
+from utils.general import read_file_data
 
 FIRST_GEN_POKEMON_COUNT = 151
+
+move_catalog = read_file_data(POKEMON_MOVES_FILE_PATH) or {}
 
 WIDTH = 70
 HEIGHT = 35
@@ -100,7 +103,15 @@ def gen1_move(entry) -> PokemonMoveJson | None:
 
 def trim_pokemon(session, raw) -> PokemonJson:
     data = {field: raw[field] for field in POKEMON_FIELDS}
-    data["moves"] = [move for move in (gen1_move(entry) for entry in raw["moves"]) if move]
+
+    if move_catalog:
+        print(f"Found {len(move_catalog)} moves in catalog - Filtering moves...")
+    data["moves"] = [
+        move
+        for move in (gen1_move(entry) for entry in raw["moves"])
+        if move and (not move_catalog or move["name"] in move_catalog)
+    ]
+
     data["color"] = species_color(session, raw)
     return data
 

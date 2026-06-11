@@ -17,18 +17,17 @@ from schemas import MoveJson
 
 FIRST_GEN_MOVE_COUNT = 165
 
+EXCLUDED_CATEGORIES = {"force-switch", "unique"}
+
 # The fields kept verbatim from each PokeAPI move object.
 MOVE_FIELDS = [
     "accuracy",
     "damage_class",
-    "effect_chance",
-    "effect_changes",
     "generation",
     "id",
     "meta",
     "name",
     "names",
-    "past_values",
     "power",
     "pp",
     "priority",
@@ -49,6 +48,9 @@ def main():
     moves = {}
     for ref in range(1, FIRST_GEN_MOVE_COUNT + 1):
         raw = session.get(f"https://pokeapi.co/api/v2/move/{ref}", timeout=20).json()
+        if raw["meta"]["category"]["name"] in EXCLUDED_CATEGORIES:
+            print(f"[{ref:3}] skip ({raw['meta']['category']['name']}): {raw['name']}")
+            continue
         moves[raw["name"]] = trim_move(raw)
         print(f"[{ref:3}] {raw['name']}")
         time.sleep(0.05)
