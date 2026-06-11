@@ -3,6 +3,7 @@ from enum import Enum
 from typing import ClassVar
 
 from config.config import POKEMON_MOVES_FILE_PATH
+from entities.types import PokemonType
 from schemas import MoveJson
 from utils.general import read_file_data
 
@@ -15,20 +16,73 @@ class DamageClassEnum(Enum):
     SPECIAL = "special"
 
 
+class AilmentEnum(Enum):
+    NONE = "none"
+    UNKNOWN = "unknown"
+    BURN = "burn"
+    CONFUSION = "confusion"
+    DISABLE = "disable"
+    FREEZE = "freeze"
+    LEECH_SEED = "leech-seed"
+    PARALYSIS = "paralysis"
+    POISON = "poison"
+    SLEEP = "sleep"
+    TRAP = "trap"
+
+
+class CategoryEnum(Enum):
+    DAMAGE = "damage"
+    AILMENT = "ailment"
+    NET_GOOD_STATS = "net-good-stats"
+    HEAL = "heal"
+    DAMAGE_AILMENT = "damage-ailment"
+    SWAGGER = "swagger"
+    DAMAGE_LOWER = "damage-lower"
+    DAMAGE_RAISE = "damage-raise"
+    DAMAGE_HEAL = "damage-heal"
+    OHKO = "ohko"
+    WHOLE_FIELD_EFFECT = "whole-field-effect"
+    FIELD_EFFECT = "field-effect"
+
+    # Not contemplated categories
+    FORCE_SWITCH = "force-switch"
+    UNIQUE = "unique"
+
+
+class TargetEnum(Enum):
+    SELECTED_POKEMON = "selected-pokemon"
+    RANDOM_OPPONENT = "random-opponent"
+    ALL_OPPONENTS = "all-opponents"
+    ALL_OTHER_POKEMON = "all-other-pokemon"
+    USER = "user"
+    USERS_FIELD = "users-field"
+    ENTIRE_FIELD = "entire-field"
+    SPECIFIC_MOVE = "specific-move"
+
+
 @dataclass(frozen=True)
-class PokemonMoveMetaData:
-    ailment: str
-    ailment_chance: int
-    category: str
-    crit_rate: int
-    drain: int
-    flinch_chance: int
-    healing: int
+class MoveStatChange:
+    stat: str
+    change: int
+    chance: int
+
+
+@dataclass(frozen=True)
+class MoveAilment:
+    ailment: AilmentEnum
+    chance: int
+
+
+@dataclass(frozen=True)
+class MoveHits:
     max_hits: int | None
-    max_turns: int | None
     min_hits: int | None
+
+
+@dataclass(frozen=True)
+class MoveTurns:
+    max_turns: int | None
     min_turns: int | None
-    stat_chance: int
 
 
 @dataclass(frozen=True)
@@ -36,19 +90,22 @@ class PokemonMove:
     id: int
     name: str
     visible_name: str
-    type: str
+    type: PokemonType
     damage_class: DamageClassEnum
     power: int | None
     accuracy: int | None
     pp: int | None
     priority: int
-    effect_chance: int | None
-    target: str
-    generation: str
-    meta: PokemonMoveMetaData
-    stat_changes: list
-    past_values: list
-    effect_changes: list
+    target: TargetEnum
+    category: CategoryEnum
+    crit_rate: int
+    drain: int
+    flinch_chance: int
+    healing: int
+    ailment_data: MoveAilment
+    hits_limit: MoveHits
+    turns_limit: MoveTurns
+    stat_changes: list[MoveStatChange]
 
     _cache: ClassVar[dict] = {}
 
@@ -56,7 +113,7 @@ class PokemonMove:
     def from_json_data(cls, data: MoveJson) -> "PokemonMove":
         visible_name = None
 
-        for lang_name in data["name"]:
+        for lang_name in data["names"]:
             if lang_name["language"]["name"] == "en":
                 visible_name = lang_name["name"]
                 break
@@ -67,32 +124,38 @@ class PokemonMove:
             id=data["id"],
             name=data["name"],
             visible_name=visible_name,
-            type=data["type"]["name"],
-            damage_class=data["damage_class"]["name"],
+            type=PokemonType.get(data["type"]["name"]),
+            damage_class=DamageClassEnum(data["damage_class"]["name"]),
             power=data["power"],
             accuracy=data["accuracy"],
             pp=data["pp"],
             priority=data["priority"],
-            effect_chance=data["effect_chance"],
-            target=data["target"]["name"],
-            generation=data["generation"]["name"],
-            meta=PokemonMoveMetaData(
-                ailment=meta["ailment"]["name"],
-                ailment_chance=meta["ailment_chance"],
-                category=meta["category"]["name"],
-                crit_rate=meta["crit_rate"],
-                drain=meta["drain"],
-                flinch_chance=meta["flinch_chance"],
-                healing=meta["healing"],
-                max_hits=meta["max_hits"],
-                max_turns=meta["max_turns"],
-                min_hits=meta["min_hits"],
-                min_turns=meta["min_turns"],
-                stat_chance=meta["stat_chance"],
+            target=TargetEnum(data["target"]["name"]),
+            category=CategoryEnum(meta["category"]["name"]),
+            crit_rate=meta["crit_rate"],
+            drain=meta["drain"],
+            flinch_chance=meta["flinch_chance"],
+            healing=meta["healing"],
+            ailment_data=MoveAilment(
+                ailment=AilmentEnum(meta["ailment"]["name"]),
+                chance=meta["ailment_chance"],
             ),
-            stat_changes=data["stat_changes"],
-            past_values=data["past_values"],
-            effect_changes=data["effect_changes"],
+            hits_limit=MoveHits(
+                max_hits=meta["max_hits"],
+                min_hits=meta["min_hits"],
+            ),
+            turns_limit=MoveTurns(
+                max_turns=meta["max_turns"],
+                min_turns=meta["min_turns"],
+            ),
+            stat_changes=[
+                MoveStatChange(
+                    change=stat_change["change"],
+                    stat=stat_change["stat"]["name"],
+                    chance=meta["stat_chance"],
+                )
+                for stat_change in data["stat_changes"]
+            ],
         )
 
     @classmethod
@@ -107,3 +170,10 @@ class PokemonMove:
             cls._cache[key] = cls.from_json_data(move_data)
 
         return cls._cache[key]
+
+
+@dataclass
+class BattlePokemonMove:
+    move: PokemonMove
+    current_pp: int
+    enabled: bool
