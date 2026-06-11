@@ -1,11 +1,11 @@
 import json
-import os
 import time
 
 import requests
 
-from config.config import ASSETS_PATH, POKEMON_TYPES_FILE_PATH
+from config.config import POKEMON_TYPES_FILE_PATH
 from schemas import TypeJson
+from utils.files import write_file_data
 
 LAST_TYPE_ID = 16
 
@@ -22,7 +22,6 @@ def trim_type(raw) -> TypeJson:
 
 
 def main():
-    os.makedirs(ASSETS_PATH, exist_ok=True)
     session = requests.Session()
 
     types = {}
@@ -32,8 +31,7 @@ def main():
         print(f"[{ref:3}] {raw['name']}")
         time.sleep(0.05)
 
-    with open(POKEMON_TYPES_FILE_PATH, "w") as file:
-        json.dump(types, file, indent=4)
+    write_file_data(POKEMON_TYPES_FILE_PATH, json.dumps(types, indent=4))
 
     print(f"\nDone. {len(types)} types written to {POKEMON_TYPES_FILE_PATH}.")
 

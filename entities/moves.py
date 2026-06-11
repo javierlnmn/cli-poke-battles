@@ -5,9 +5,9 @@ from typing import ClassVar
 from config.config import POKEMON_MOVES_FILE_PATH
 from entities.types import PokemonType
 from schemas import MoveJson
-from utils.general import read_file_data
+from utils.files import read_file_data_json
 
-moves_file_data = read_file_data(POKEMON_MOVES_FILE_PATH)
+moves_file_data = read_file_data_json(POKEMON_MOVES_FILE_PATH)
 
 
 class DamageClassEnum(Enum):

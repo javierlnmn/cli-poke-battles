@@ -1,18 +1,18 @@
 import io
 import json
-import os
 import time
+from pathlib import Path
 
 import requests
 from PIL import Image
 
 from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH, POKEMON_MOVES_FILE_PATH
 from schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
-from utils.general import read_file_data
+from utils.files import read_file_data_json, write_file_data
 
 FIRST_GEN_POKEMON_COUNT = 151
 
-move_catalog = read_file_data(POKEMON_MOVES_FILE_PATH) or {}
+move_catalog = read_file_data_json(POKEMON_MOVES_FILE_PATH) or {}
 
 WIDTH = 70
 HEIGHT = 35
@@ -73,8 +73,7 @@ def save_ascii(session, raw, name):
     if not url:
         return
     img = Image.open(io.BytesIO(session.get(url, timeout=20).content))
-    with open(os.path.join(POKEMON_ASCII_ART_PATH, name), "w") as file:
-        file.write(to_ascii(img))
+    write_file_data(Path(POKEMON_ASCII_ART_PATH) / name, to_ascii(img))
 
 
 def species_color(session, raw):
@@ -117,7 +116,6 @@ def trim_pokemon(session, raw) -> PokemonJson:
 
 
 def main():
-    os.makedirs(POKEMON_ASCII_ART_PATH, exist_ok=True)
     session = requests.Session()
 
     pokemons = {}
@@ -129,8 +127,7 @@ def main():
         print(f"[{dex:3}] {name}")
         time.sleep(0.05)
 
-    with open(POKEMON_DATA_FILE_PATH, "w") as file:
-        json.dump(pokemons, file, indent=4)
+    write_file_data(POKEMON_DATA_FILE_PATH, json.dumps(pokemons, indent=4))
 
     print(f"\nDone. {len(pokemons)} pokemons written to {POKEMON_DATA_FILE_PATH}.")
 

@@ -3,9 +3,9 @@ from typing import ClassVar
 
 from config.config import POKEMON_TYPES_FILE_PATH
 from schemas import NamedResourceJson, TypeJson
-from utils.general import read_file_data
+from utils.files import read_file_data_json
 
-types_file_data = read_file_data(POKEMON_TYPES_FILE_PATH)
+types_file_data = read_file_data_json(POKEMON_TYPES_FILE_PATH)
 
 
 @dataclass(frozen=True)

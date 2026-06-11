@@ -1,19 +1,11 @@
-"""One-off helper: fetch all Gen-1 moves (#1-165) from PokeAPI.
-
-Keeps only the subset of fields the game cares about (see MOVE_FIELDS),
-stored raw and keyed by move name in pokemon_moves.json. The raw->domain
-flattening happens on load in utils/json_parsers/moves.py, mirroring the
-types pipeline.
-"""
-
 import json
-import os
 import time
 
 import requests
 
-from config.config import ASSETS_PATH, POKEMON_MOVES_FILE_PATH
+from config.config import POKEMON_MOVES_FILE_PATH
 from schemas import MoveJson
+from utils.files import write_file_data
 
 FIRST_GEN_MOVE_COUNT = 165
 
@@ -42,7 +34,6 @@ def trim_move(raw) -> MoveJson:
 
 
 def main():
-    os.makedirs(ASSETS_PATH, exist_ok=True)
     session = requests.Session()
 
     moves = {}
@@ -55,8 +46,7 @@ def main():
         print(f"[{ref:3}] {raw['name']}")
         time.sleep(0.05)
 
-    with open(POKEMON_MOVES_FILE_PATH, "w") as file:
-        json.dump(moves, file, indent=4)
+    write_file_data(POKEMON_MOVES_FILE_PATH, json.dumps(moves, indent=4))
 
     print(f"\nDone. {len(moves)} moves written to {POKEMON_MOVES_FILE_PATH}.")
 

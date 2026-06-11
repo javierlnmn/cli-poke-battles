@@ -7,9 +7,9 @@ from config.config import (
 from entities.moves import BattlePokemonMove, PokemonMove
 from entities.types import PokemonType
 from schemas import PokemonJson
-from utils.general import read_file_data
+from utils.files import read_file_data_json
 
-pokemon_file_data = read_file_data(POKEMON_DATA_FILE_PATH)
+pokemon_file_data = read_file_data_json(POKEMON_DATA_FILE_PATH)
 
 
 @dataclass
