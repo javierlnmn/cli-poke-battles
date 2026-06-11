@@ -3,6 +3,7 @@ from enum import Enum
 from typing import ClassVar
 
 from config.config import POKEMON_MOVES_FILE_PATH
+from schemas import MoveJson
 from utils.general import read_file_data
 
 moves_file_data = read_file_data(POKEMON_MOVES_FILE_PATH)
@@ -52,10 +53,10 @@ class PokemonMove:
     _cache: ClassVar[dict] = {}
 
     @classmethod
-    def from_json_data(cls, data) -> "PokemonMove":
+    def from_json_data(cls, data: MoveJson) -> "PokemonMove":
         visible_name = None
 
-        for lang_name in data["names"]:
+        for lang_name in data["name"]:
             if lang_name["language"]["name"] == "en":
                 visible_name = lang_name["name"]
                 break

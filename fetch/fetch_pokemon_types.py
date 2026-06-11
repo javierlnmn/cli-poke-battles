@@ -5,6 +5,7 @@ import time
 import requests
 
 from config.config import ASSETS_PATH, POKEMON_TYPES_FILE_PATH
+from schemas import TypeJson
 
 LAST_TYPE_ID = 16
 
@@ -16,7 +17,7 @@ TYPE_FIELDS = [
 ]
 
 
-def trim_type(raw):
+def trim_type(raw) -> TypeJson:
     return {field: raw[field] for field in TYPE_FIELDS}
 
 

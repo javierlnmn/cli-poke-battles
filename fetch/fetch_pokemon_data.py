@@ -7,6 +7,7 @@ import requests
 from PIL import Image
 
 from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
+from schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
 
 FIRST_GEN_POKEMON_COUNT = 151
 
@@ -78,8 +79,8 @@ def species_color(session, raw):
     return COLOR_MAP.get(species["color"]["name"], "white")
 
 
-def gen1_move(entry):
-    by_version_group = {}
+def gen1_move(entry) -> PokemonMoveJson | None:
+    by_version_group: dict[str, list[MoveLearnDetailJson]] = {}
     for detail in entry["version_group_details"]:
         version_group = detail["version_group"]["name"]
         if version_group in GEN1_VERSION_GROUPS:
@@ -97,7 +98,7 @@ def gen1_move(entry):
     return {"name": entry["move"]["name"], "learn_details": learn_details}
 
 
-def trim_pokemon(session, raw):
+def trim_pokemon(session, raw) -> PokemonJson:
     data = {field: raw[field] for field in POKEMON_FIELDS}
     data["moves"] = [move for move in (gen1_move(entry) for entry in raw["moves"]) if move]
     data["color"] = species_color(session, raw)

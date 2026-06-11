@@ -1,20 +1,12 @@
-import random
-import time
 from dataclasses import dataclass
 from typing import ClassVar
-
-import clear_screen
-import questionary
 
 from config.config import (
     POKEMON_DATA_FILE_PATH,
 )
 from entities.moves import PokemonMove
 from entities.types import PokemonType
-from utils.ascii_art import (
-    reset_console_ansi_escapes,
-    set_console_color,
-)
+from schemas import PokemonJson
 from utils.general import read_file_data
 
 pokemon_file_data = read_file_data(POKEMON_DATA_FILE_PATH)
@@ -30,6 +22,12 @@ class PokemonStats:
     speed: int
 
 
+@dataclass
+class PokemonMoveMetadata(frozen=True):
+    level_learned_at: int
+    move: PokemonMove
+
+
 @dataclass(frozen=True)
 class Pokemon:
     id: int
@@ -38,21 +36,23 @@ class Pokemon:
     base_experience: int
     stats: PokemonStats
     types: list[PokemonType]
-    moves: list[PokemonMove]
+    moves: list[PokemonMoveMetadata]
     color: str
 
     _cache: ClassVar[dict] = {}
 
     @classmethod
-    def from_json_data(cls, data) -> "PokemonType":
+    def from_json_data(cls, data: PokemonJson) -> "Pokemon":
         stats = {}
         for stat in data["stats"]:
             stats[stat["stat"]["name"]] = stat["base_stat"]
 
         types_list = [PokemonType.get(type["type"]["name"]) for type in data["types"]]
 
-        # TODO: Implement moves picking system
-        moves_list = []
+        pokemon_moves_data = [
+            PokemonMoveMetadata(level_learned_at=move["learn_details"], move=PokemonMove.get(move["name"]))
+            for move in data["moves"]
+        ]
 
         return cls(
             id=data["id"],
@@ -61,7 +61,7 @@ class Pokemon:
             base_experience=data["base_experience"],
             stats=PokemonStats(**stats),
             types=types_list,
-            moves=moves_list,
+            moves=pokemon_moves_data,
             color=data["color"],
         )
 

@@ -13,6 +13,7 @@ import time
 import requests
 
 from config.config import ASSETS_PATH, POKEMON_MOVES_FILE_PATH
+from schemas import MoveJson
 
 FIRST_GEN_MOVE_COUNT = 165
 
@@ -37,7 +38,7 @@ MOVE_FIELDS = [
 ]
 
 
-def trim_move(raw):
+def trim_move(raw) -> MoveJson:
     return {field: raw[field] for field in MOVE_FIELDS}
 
 

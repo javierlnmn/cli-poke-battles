@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import ClassVar
 
 from config.config import POKEMON_TYPES_FILE_PATH
+from schemas import NamedResourceJson, TypeJson
 from utils.general import read_file_data
 
 types_file_data = read_file_data(POKEMON_TYPES_FILE_PATH)
@@ -22,7 +23,7 @@ class PokemonType:
     _cache: ClassVar[dict] = {}
 
     @classmethod
-    def from_json_data(cls, data) -> "PokemonType":
+    def from_json_data(cls, data: TypeJson) -> "PokemonType":
         visible_name = None
 
         for lang_name in data["names"]:
@@ -58,5 +59,5 @@ class PokemonType:
         return cls._cache[key]
 
 
-def _extract_damage_relation_name(damage_relation) -> list[str]:
+def _extract_damage_relation_name(damage_relation: list[NamedResourceJson]) -> list[str]:
     return [relation_type["name"] for relation_type in damage_relation]
