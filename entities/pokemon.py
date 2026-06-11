@@ -4,7 +4,7 @@ from typing import ClassVar
 from config.config import (
     POKEMON_DATA_FILE_PATH,
 )
-from entities.moves import BattlePokemonMove, PokemonMove
+from entities.moves import PokemonMove
 from entities.types import PokemonType
 from schemas import PokemonJson
 from utils.general import read_file_data
@@ -85,14 +85,6 @@ class Pokemon:
             cls._cache[key] = cls.from_json_data(pokemon_data)
 
         return cls._cache[key]
-
-
-@dataclass
-class BattlePokemon:
-    pokemon: Pokemon
-    current_hp: int
-    current_stats: PokemonStats
-    current_moves: list[BattlePokemonMove]
 
 
 # def user_choose_pokemon() -> Pokemon:

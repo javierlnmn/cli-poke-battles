@@ -31,18 +31,18 @@ class PokemonType:
                 visible_name = lang_name["name"]
                 break
 
-        damage_relations = data["damage_relations"]
+        damage_relations_data = data["damage_relations"]
+        damage_relations = {}
+
+        for damage_relation_key, damage_relation_value in damage_relations_data.items():
+            names = [pokemon_type["name"] for pokemon_type in damage_relation_value]
+            damage_relations[damage_relation_key] = names
 
         return cls(
             id=data["id"],
             name=data["name"],
             visible_name=visible_name,
-            double_damage_from=_extract_damage_relation_name(damage_relations["double_damage_from"]),
-            double_damage_to=_extract_damage_relation_name(damage_relations["double_damage_to"]),
-            half_damage_from=_extract_damage_relation_name(damage_relations["half_damage_from"]),
-            half_damage_to=_extract_damage_relation_name(damage_relations["half_damage_to"]),
-            no_damage_from=_extract_damage_relation_name(damage_relations["no_damage_from"]),
-            no_damage_to=_extract_damage_relation_name(damage_relations["no_damage_to"]),
+            **damage_relations,
         )
 
     @classmethod
@@ -57,7 +57,3 @@ class PokemonType:
             cls._cache[key] = cls.from_json_data(type_data)
 
         return cls._cache[key]
-
-
-def _extract_damage_relation_name(damage_relation: list[NamedResourceJson]) -> list[str]:
-    return [relation_type["name"] for relation_type in damage_relation]

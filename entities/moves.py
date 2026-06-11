@@ -170,10 +170,3 @@ class PokemonMove:
             cls._cache[key] = cls.from_json_data(move_data)
 
         return cls._cache[key]
-
-
-@dataclass
-class BattlePokemonMove:
-    move: PokemonMove
-    current_pp: int
-    enabled: bool
