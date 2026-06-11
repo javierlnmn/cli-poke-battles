@@ -4,7 +4,7 @@ from typing import ClassVar
 from config.config import (
     POKEMON_DATA_FILE_PATH,
 )
-from entities.moves import PokemonMove
+from entities.moves import BattlePokemonMove, PokemonMove
 from entities.types import PokemonType
 from schemas import PokemonJson
 from utils.general import read_file_data
@@ -12,7 +12,7 @@ from utils.general import read_file_data
 pokemon_file_data = read_file_data(POKEMON_DATA_FILE_PATH)
 
 
-@dataclass(frozen=True)
+@dataclass
 class PokemonStats:
     hp: int
     attack: int
@@ -22,8 +22,8 @@ class PokemonStats:
     speed: int
 
 
-@dataclass
-class PokemonMoveMetadata(frozen=True):
+@dataclass(frozen=True)
+class PokemonMoveMetadata:
     level_learned_at: int
     move: PokemonMove
 
@@ -43,9 +43,17 @@ class Pokemon:
 
     @classmethod
     def from_json_data(cls, data: PokemonJson) -> "Pokemon":
-        stats = {}
-        for stat in data["stats"]:
-            stats[stat["stat"]["name"]] = stat["base_stat"]
+        pokemon_stats = {}
+        for stat_source in data["stats"]:
+            if stat_source["stat"]["name"] == "special-attack":
+                pokemon_stats["sp_attack"] = stat_source["base_stat"]
+                continue
+
+            if stat_source["stat"]["name"] == "special-defense":
+                pokemon_stats["sp_defense"] = stat_source["base_stat"]
+                continue
+
+            pokemon_stats[stat_source["stat"]["name"]] = stat_source["base_stat"]
 
         types_list = [PokemonType.get(type["type"]["name"]) for type in data["types"]]
 
@@ -59,7 +67,7 @@ class Pokemon:
             name=data["name"],
             visible_name=data["name"].capitalize(),
             base_experience=data["base_experience"],
-            stats=PokemonStats(**stats),
+            stats=PokemonStats(**pokemon_stats),
             types=types_list,
             moves=pokemon_moves_data,
             color=data["color"],
@@ -77,6 +85,14 @@ class Pokemon:
             cls._cache[key] = cls.from_json_data(pokemon_data)
 
         return cls._cache[key]
+
+
+@dataclass
+class BattlePokemon:
+    pokemon: Pokemon
+    current_hp: int
+    current_stats: PokemonStats
+    current_moves: list[BattlePokemonMove]
 
 
 # def user_choose_pokemon() -> Pokemon:
