@@ -4,6 +4,8 @@ PokemonSelectScreen {
     grid-columns: 1fr 3fr;
 }
 
-#pokemon-showcase {
+#pokemon-showcase-container {
+    height: 100%;
+    width: 100%;
     align: center middle;
 }
