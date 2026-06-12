@@ -41,3 +41,11 @@ class PokemonJson(TypedDict):
     abilities: list[PokemonAbilityJson]
     moves: list[PokemonMoveJson]
     color: str
+
+
+class PokemonPreview(TypedDict):
+    key: str
+    visible_name: str
+    type: str
+    color: str
+    base_experience: int

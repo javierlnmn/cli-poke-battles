@@ -4,6 +4,7 @@ import time
 import requests
 
 from config.config import POKEMON_MOVES_FILE_PATH
+from repositories import MoveRepository
 from schemas import MoveJson
 from utils.files import write_file_data
 
@@ -47,6 +48,7 @@ class MoveService:
     def update_data(self) -> None:
         moves = self.fetch()
         write_file_data(POKEMON_MOVES_FILE_PATH, json.dumps(moves, indent=4))
+        MoveRepository.clear_cache()
         print(f"\nDone. {len(moves)} moves written to {POKEMON_MOVES_FILE_PATH}.")
 
     def _trim_move(self, raw) -> MoveJson:

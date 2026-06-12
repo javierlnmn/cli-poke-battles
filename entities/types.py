@@ -1,11 +1,8 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
-from config.config import POKEMON_TYPES_FILE_PATH
+from repositories import TypeRepository
 from schemas import NamedResourceJson, TypeJson
-from utils.files import read_file_data_json
-
-types_file_data = read_file_data_json(POKEMON_TYPES_FILE_PATH)
 
 
 @dataclass(frozen=True)
@@ -50,7 +47,7 @@ class PokemonType:
         key = name_id.lower()
 
         if key not in cls._cache:
-            type_data = types_file_data.get(key)
+            type_data = TypeRepository.get_types_data().get(key)
             if not type_data:
                 raise ValueError(f"PokemonType '{name_id}' not found")
 

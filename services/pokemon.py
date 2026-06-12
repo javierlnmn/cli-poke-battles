@@ -6,9 +6,10 @@ from pathlib import Path
 import requests
 from PIL import Image
 
-from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH, POKEMON_MOVES_FILE_PATH
+from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
+from repositories import MoveRepository, PokemonRepository
 from schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
-from utils.files import read_file_data_json, write_file_data
+from utils.files import write_file_data
 
 
 class PokemonService:
@@ -47,14 +48,6 @@ class PokemonService:
 
     def __init__(self):
         self.session = requests.Session()
-        self.move_catalog = self._load_move_catalog()
-
-    @staticmethod
-    def _load_move_catalog() -> dict:
-        try:
-            return read_file_data_json(POKEMON_MOVES_FILE_PATH)
-        except FileNotFoundError:
-            return {}
 
     def fetch(self) -> tuple[dict[str, PokemonJson], dict[str, str]]:
         pokemons = {}
@@ -77,11 +70,8 @@ class PokemonService:
             write_file_data(Path(POKEMON_ASCII_ART_PATH) / name, ascii_art)
 
         write_file_data(POKEMON_DATA_FILE_PATH, json.dumps(pokemons, indent=4))
+        PokemonRepository.clear_cache()
         print(f"\nDone. {len(pokemons)} pokemons written to {POKEMON_DATA_FILE_PATH}.")
-
-    @staticmethod
-    def get_pokemon_list() -> list[str]:
-        return list(read_file_data_json(POKEMON_DATA_FILE_PATH).keys())
 
     def _build_ascii(self, raw) -> str | None:
         url = self._sprite_url(raw)
@@ -133,13 +123,21 @@ class PokemonService:
 
         return {"name": entry["move"]["name"], "learn_details": learn_details}
 
+    @staticmethod
+    def _move_catalog() -> dict:
+        try:
+            return MoveRepository.get_moves_data()
+        except FileNotFoundError:
+            return {}
+
     def _trim_pokemon(self, raw) -> PokemonJson:
         data = {field: raw[field] for field in self.POKEMON_FIELDS}
 
+        move_catalog = self._move_catalog()
         data["moves"] = [
             move
             for move in (self._gen1_move(entry) for entry in raw["moves"])
-            if move and (not self.move_catalog or move["name"] in self.move_catalog)
+            if move and (not move_catalog or move["name"] in move_catalog)
         ]
 
         data["color"] = self._species_color(raw)

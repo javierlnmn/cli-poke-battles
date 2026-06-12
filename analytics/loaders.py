@@ -1,10 +1,6 @@
 import pandas as pd
 
-from config.config import (
-    POKEMON_DATA_FILE_PATH,
-    POKEMON_MOVES_FILE_PATH,
-)
-from utils.files import read_file_data_json
+from repositories import MoveRepository, PokemonRepository
 
 STAT_COLUMNS = [
     "hp",
@@ -17,7 +13,7 @@ STAT_COLUMNS = [
 
 
 def load_pokemon_df() -> pd.DataFrame:
-    raw = read_file_data_json(POKEMON_DATA_FILE_PATH)
+    raw = PokemonRepository.get_pokemon_data()
 
     rows = []
     for pokemon in raw.values():
@@ -38,7 +34,7 @@ def load_pokemon_df() -> pd.DataFrame:
 
 
 def load_moves_df() -> pd.DataFrame:
-    raw = read_file_data_json(POKEMON_MOVES_FILE_PATH)
+    raw = MoveRepository.get_moves_data()
 
     rows = [
         {

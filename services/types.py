@@ -4,6 +4,7 @@ import time
 import requests
 
 from config.config import POKEMON_TYPES_FILE_PATH
+from repositories import TypeRepository
 from schemas import TypeJson
 from utils.files import write_file_data
 
@@ -33,6 +34,7 @@ class TypeService:
     def update_data(self) -> None:
         types = self.fetch()
         write_file_data(POKEMON_TYPES_FILE_PATH, json.dumps(types, indent=4))
+        TypeRepository.clear_cache()
         print(f"\nDone. {len(types)} types written to {POKEMON_TYPES_FILE_PATH}.")
 
     def _trim_type(self, raw) -> TypeJson:

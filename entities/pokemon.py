@@ -1,15 +1,10 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
-from config.config import (
-    POKEMON_DATA_FILE_PATH,
-)
 from entities.moves import BattlePokemonMove, PokemonMove
 from entities.types import PokemonType
+from repositories import PokemonRepository
 from schemas import PokemonJson
-from utils.files import read_file_data_json
-
-pokemon_file_data = read_file_data_json(POKEMON_DATA_FILE_PATH)
 
 
 @dataclass
@@ -78,7 +73,7 @@ class Pokemon:
         key = name_id.lower()
 
         if key not in cls._cache:
-            pokemon_data = pokemon_file_data.get(key)
+            pokemon_data = PokemonRepository.get_pokemon_data().get(key)
             if not pokemon_data:
                 raise ValueError(f"Pokemon '{name_id}' not found")
 

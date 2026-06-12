@@ -5,6 +5,7 @@ from schemas.pokemon import (
     PokemonAbilityJson,
     PokemonJson,
     PokemonMoveJson,
+    PokemonPreview,
     PokemonStatJson,
     PokemonTypeSlotJson,
 )
@@ -23,4 +24,5 @@ __all__ = [
     "MoveLearnDetailJson",
     "PokemonMoveJson",
     "PokemonJson",
+    "PokemonPreview",
 ]

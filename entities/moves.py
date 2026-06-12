@@ -2,12 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar
 
-from config.config import POKEMON_MOVES_FILE_PATH
 from entities.types import PokemonType
+from repositories import MoveRepository
 from schemas import MoveJson
-from utils.files import read_file_data_json
-
-moves_file_data = read_file_data_json(POKEMON_MOVES_FILE_PATH)
 
 
 class DamageClassEnum(Enum):
@@ -163,7 +160,7 @@ class PokemonMove:
         key = name_id.lower()
 
         if key not in cls._cache:
-            move_data = moves_file_data.get(key)
+            move_data = MoveRepository.get_moves_data().get(key)
             if not move_data:
                 raise ValueError(f"Move '{name_id}' not found")
 
