@@ -15,8 +15,8 @@ from utils.files import write_file_data
 class PokemonService:
     FIRST_GEN_POKEMON_COUNT = 151
 
-    WIDTH = 70
-    HEIGHT = 35
+    WIDTH = 53
+    HEIGHT = 26
     RAMP = " .:-=+*#%@"
     ALPHA_THRESHOLD = 96
 
