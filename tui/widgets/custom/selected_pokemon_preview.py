@@ -30,11 +30,16 @@ class SelectedPokemonPreview(Widget):
         padding: 1 2;
     }
 
+    SelectedPokemonPreview #ascii-container {
+        height: 100%;
+        content-align: center middle;
+    }
+
     SelectedPokemonPreview #pokemon-ascii-art {
         width: 100%;
         height: 100%;
         text-align: center;
-        align: center middle;
+        content-align: center middle;
     }
 
     SelectedPokemonPreview .data-panel {
@@ -109,11 +114,12 @@ class SelectedPokemonPreview(Widget):
         return f"stat-val-{slug}", f"stat-bar-{slug}"
 
     def compose(self) -> ComposeResult:
-        yield Label(
-            self._colored_ascii(self._default_pokemon_ascii_art, self._default_pokemon["color"]),
-            id="pokemon-ascii-art",
-            markup=False,
-        )
+        with Container(id="ascii-container"):
+            yield Label(
+                self._colored_ascii(self._default_pokemon_ascii_art, self._default_pokemon["color"]),
+                id="pokemon-ascii-art",
+                markup=False,
+            )
 
         with Container(classes="data-panel"):
             yield Label(
