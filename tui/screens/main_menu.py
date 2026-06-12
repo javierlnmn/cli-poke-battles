@@ -27,3 +27,7 @@ class MainMenuScreen(Screen):
     @on(Button.Pressed, "#quit-app")
     def action_quit_app(self):
         self.app.exit()
+
+    @on(Button.Pressed, "#play")
+    def action_push_pokemon_select_screen(self):
+        self.app.push_screen("pokemon_select")
