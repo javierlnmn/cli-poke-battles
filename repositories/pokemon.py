@@ -1,8 +1,8 @@
 from typing import ClassVar
 
-from config.config import POKEMON_DATA_FILE_PATH
+from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
 from schemas import PokemonJson, PokemonPreview
-from utils.files import read_file_data_json
+from utils.files import read_file_data, read_file_data_json
 
 
 class PokemonRepository:
@@ -23,6 +23,7 @@ class PokemonRepository:
                 "type": pokemon["types"][0]["type"]["name"],
                 "color": pokemon["color"],
                 "base_experience": pokemon["base_experience"],
+                "stats": pokemon["stats"],
             }
             for key, pokemon in cls.get_pokemon_data().items()
         ]
@@ -30,3 +31,7 @@ class PokemonRepository:
     @classmethod
     def clear_cache(cls) -> None:
         cls._pokemon_data = None
+
+    @classmethod
+    def get_pokemon_ascii_art(cls, pokemon_key: str) -> str:
+        return read_file_data(POKEMON_ASCII_ART_PATH / pokemon_key)
