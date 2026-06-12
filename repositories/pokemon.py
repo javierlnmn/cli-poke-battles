@@ -19,7 +19,7 @@ class PokemonRepository:
         return [
             {
                 "key": key,
-                "visible_name": pokemon["name"].capitalize(),
+                "visible_name": pokemon["name"].replace("-", " ").title(),
                 "type": pokemon["types"][0]["type"]["name"],
                 "color": pokemon["color"],
                 "base_experience": pokemon["base_experience"],

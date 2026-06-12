@@ -1,7 +1,10 @@
 PokemonSelectScreen {
     layout: grid;
-    grid-size: 2;
-    grid-columns: 1fr 3fr;
+}
+
+VerticalScrollSelectList {
+    width: 40;
+    dock: left;
 }
 
 #pokemon-showcase-container {
