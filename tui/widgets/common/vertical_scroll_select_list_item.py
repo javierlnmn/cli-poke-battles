@@ -3,10 +3,16 @@ from typing import Any
 from textual import widgets
 from textual.app import ComposeResult
 from textual.message import Message
-from textual.widgets import Static
+from textual.widget import Widget
 
 
-class VerticalScrollSelectListItem(Static):
+class VerticalScrollSelectListItem(Widget):
+    DEFAULT_CSS = """
+    VerticalScrollSelectListItem {
+        height: auto;
+    }
+    """
+
     def __init__(self, item: Any, item_widget: widgets) -> None:
         self.item = item
         self.item_widget = item_widget

@@ -1,11 +1,12 @@
 from textual.app import ComposeResult
 from textual.containers import Horizontal
-from textual.widgets import Label, Static
+from textual.widget import Widget
+from textual.widgets import Label
 
 from schemas import PokemonPreview
 
 
-class PokemonSelectCard(Static):
+class PokemonSelectCard(Widget):
     DEFAULT_CSS = """
     PokemonSelectCard {
         border: round white;
