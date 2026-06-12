@@ -49,3 +49,4 @@ class PokemonPreview(TypedDict):
     type: str
     color: str
     base_experience: int
+    stats: list[PokemonStatJson]
