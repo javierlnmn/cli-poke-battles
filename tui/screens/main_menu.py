@@ -20,7 +20,7 @@ class MainMenuScreen(Screen):
             yield Label("CLI PokéBattles: Pokemon CLI Battle Game - ", id="subtitle", classes="subtitle")
             yield Link("See repo", url=REPO_LINK, classes="subtitle-link")
 
-        with HorizontalGroup(classes="buttons-container"):
+        with HorizontalGroup(classes="menu-buttons-container"):
             yield Button("Play", id="play", variant="primary")
             yield Button("Quit", id="quit-app", variant="error")
 

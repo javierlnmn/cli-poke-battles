@@ -26,8 +26,7 @@ class SelectedPokemonPreview(Widget):
         layout: grid;
         grid-size: 2 1;
         grid-columns: 1fr 1fr;
-        height: 100%;
-        padding: 1 2;
+        padding: 0 2;
     }
 
     SelectedPokemonPreview #ascii-container {

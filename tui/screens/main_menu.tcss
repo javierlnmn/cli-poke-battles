@@ -13,6 +13,7 @@ MainMenuScreen {
     padding-top: 2;
     width: 64;
     text-align: center;
+    align: center middle;
     color: $secondary;
     text-style: bold;
 }
@@ -21,8 +22,12 @@ MainMenuScreen {
     color: $accent;
 }
 
-.buttons-container {
+.menu-buttons-container {
     width: 64;
     padding-top: 3;
     align-horizontal: center;
+}
+
+.menu-buttons-container Button {
+    margin: 0 1;
 }
