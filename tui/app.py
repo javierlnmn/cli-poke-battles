@@ -1,6 +1,6 @@
 from textual.app import App
 
-from tui.screens import MainMenuScreen, PokemonSelectScreen
+from tui.screens import BattleScreen, MainMenuScreen, PokemonSelectScreen
 from tui.theme import pokedex_theme
 
 
@@ -8,6 +8,7 @@ class CLIPokeBattlesApp(App):
     SCREENS = {
         "main_menu": MainMenuScreen,
         "pokemon_select": PokemonSelectScreen,
+        "battle": BattleScreen,
     }
 
     def on_mount(self) -> None:

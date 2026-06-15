@@ -7,6 +7,7 @@ from textual.widgets import Button
 
 from repositories import PokemonRepository
 from schemas import PokemonPreview
+from tui.screens import BattleScreen
 from tui.widgets.common import VerticalScrollSelectList
 from tui.widgets.custom import PokemonSelectCard, SelectedPokemonPreview
 
@@ -39,7 +40,7 @@ class PokemonSelectScreen(Screen):
 
     @on(Button.Pressed, "#play")
     def action_play(self):
-        pass
+        self.app.push_screen(BattleScreen(self.selected_pokemon))
 
     def on_vertical_scroll_select_list_item_clicked(
         self, message: VerticalScrollSelectList.ItemClicked
