@@ -35,7 +35,6 @@ class TypeService:
         types = self.fetch()
         write_file_data(POKEMON_TYPES_FILE_PATH, json.dumps(types, indent=4))
         TypeRepository.clear_cache()
-        print(f"\nDone. {len(types)} types written to {POKEMON_TYPES_FILE_PATH}.")
 
     def _trim_type(self, raw) -> TypeJson:
         return {field: raw[field] for field in self.TYPE_FIELDS}

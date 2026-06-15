@@ -4,9 +4,13 @@ from services.types import TypeService
 
 
 def update_assets() -> None:
+    print("\nUpdating assets...")
     TypeService().update_data()
+    print("\nUpdating moves...")
     MoveService().update_data()
+    print("\nUpdating pokemons...")
     PokemonService().update_data()
+    print("\nAssets updated successfully")
 
 
 if __name__ == "__main__":

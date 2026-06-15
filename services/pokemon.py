@@ -71,7 +71,6 @@ class PokemonService:
 
         write_file_data(POKEMON_DATA_FILE_PATH, json.dumps(pokemons, indent=4))
         PokemonRepository.clear_cache()
-        print(f"\nDone. {len(pokemons)} pokemons written to {POKEMON_DATA_FILE_PATH}.")
 
     def _build_ascii(self, raw) -> str | None:
         url = self._sprite_url(raw)
@@ -126,7 +125,7 @@ class PokemonService:
     @staticmethod
     def _move_catalog() -> dict:
         try:
-            return MoveRepository.get_moves_data()
+            return MoveRepository.load_moves_data()
         except FileNotFoundError:
             return {}
 

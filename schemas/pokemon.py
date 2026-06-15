@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import TypedDict
 
 from schemas.common import NamedResourceJson
@@ -43,7 +44,8 @@ class PokemonJson(TypedDict):
     color: str
 
 
-class PokemonPreview(TypedDict):
+@dataclass(frozen=True)
+class PokemonPreview:
     key: str
     visible_name: str
     type: str

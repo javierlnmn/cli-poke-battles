@@ -98,7 +98,7 @@ class SelectedPokemonPreview(Widget):
     def __init__(self, default_pokemon: PokemonPreview) -> None:
         super().__init__()
         self._default_pokemon = default_pokemon
-        self._default_pokemon_ascii_art = PokemonRepository.get_pokemon_ascii_art(default_pokemon["key"])
+        self._default_pokemon_ascii_art = PokemonRepository.get_pokemon_ascii_art(default_pokemon.key)
 
     def _colored_ascii(self, ascii_art: str, color: str) -> Text:
         return Text(ascii_art, style=color, no_wrap=True)
@@ -115,35 +115,35 @@ class SelectedPokemonPreview(Widget):
     def compose(self) -> ComposeResult:
         with Container(id="ascii-container"):
             yield Label(
-                self._colored_ascii(self._default_pokemon_ascii_art, self._default_pokemon["color"]),
+                self._colored_ascii(self._default_pokemon_ascii_art, self._default_pokemon.color),
                 id="pokemon-ascii-art",
                 markup=False,
             )
 
         with Container(classes="data-panel"):
             yield Label(
-                self._default_pokemon["visible_name"].upper(),
+                self._default_pokemon.visible_name.upper(),
                 id="pokemon-name",
             )
 
             with Container(classes="info-row"):
                 yield Label("Type", classes="row-label")
                 yield Label(
-                    self._default_pokemon["type"].capitalize(),
+                    self._default_pokemon.type.capitalize(),
                     classes="row-value",
                     id="pokemon-type",
                 )
             with Container(classes="info-row"):
                 yield Label("Base XP", classes="row-label")
                 yield Label(
-                    str(self._default_pokemon["base_experience"]),
+                    str(self._default_pokemon.base_experience),
                     classes="row-value",
                     id="pokemon-xp",
                 )
 
             yield Container(classes="divider")
 
-            for stat_entry in self._default_pokemon["stats"]:
+            for stat_entry in self._default_pokemon.stats:
                 name = stat_entry["stat"]["name"]
                 value = stat_entry["base_stat"]
                 val_id, bar_id = self._build_stat_id(name)
@@ -151,7 +151,7 @@ class SelectedPokemonPreview(Widget):
                     yield Label(STAT_LABELS.get(name, name), classes="row-label")
                     yield Label(str(value), classes="row-value", id=val_id)
                     yield Label(
-                        self._stat_bar(value, self._default_pokemon["color"]),
+                        self._stat_bar(value, self._default_pokemon.color),
                         classes="stat-bar",
                         id=bar_id,
                         markup=False,
@@ -161,17 +161,17 @@ class SelectedPokemonPreview(Widget):
         self.pokemon = self._default_pokemon
 
     def watch_pokemon(self, pokemon: PokemonPreview) -> None:
-        ascii_art = PokemonRepository.get_pokemon_ascii_art(pokemon["key"])
+        ascii_art = PokemonRepository.get_pokemon_ascii_art(pokemon.key)
 
-        self.query_one("#pokemon-ascii-art", Label).update(self._colored_ascii(ascii_art, pokemon["color"]))
-        self.query_one("#pokemon-name", Label).update(pokemon["visible_name"].upper())
-        self.query_one("#pokemon-type", Label).update(pokemon["type"].capitalize())
-        self.query_one("#pokemon-xp", Label).update(str(pokemon["base_experience"]))
-        self.query_one(".data-panel").styles.border_left = ("heavy", pokemon["color"])
+        self.query_one("#pokemon-ascii-art", Label).update(self._colored_ascii(ascii_art, pokemon.color))
+        self.query_one("#pokemon-name", Label).update(pokemon.visible_name.upper())
+        self.query_one("#pokemon-type", Label).update(pokemon.type.capitalize())
+        self.query_one("#pokemon-xp", Label).update(str(pokemon.base_experience))
+        self.query_one(".data-panel").styles.border_left = ("heavy", pokemon.color)
 
-        for stat_entry in pokemon["stats"]:
+        for stat_entry in pokemon.stats:
             name = stat_entry["stat"]["name"]
             value = stat_entry["base_stat"]
             val_id, bar_id = self._build_stat_id(name)
             self.query_one(f"#{val_id}", Label).update(str(value))
-            self.query_one(f"#{bar_id}", Label).update(self._stat_bar(value, pokemon["color"]))
+            self.query_one(f"#{bar_id}", Label).update(self._stat_bar(value, pokemon.color))

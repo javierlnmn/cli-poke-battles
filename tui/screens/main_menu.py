@@ -1,6 +1,6 @@
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import HorizontalGroup, VerticalGroup
+from textual.containers import HorizontalGroup
 from textual.screen import Screen
 from textual.widgets import Button, Label, Link, Static
 

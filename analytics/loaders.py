@@ -13,7 +13,7 @@ STAT_COLUMNS = [
 
 
 def load_pokemon_df() -> pd.DataFrame:
-    raw = PokemonRepository.get_pokemon_data()
+    raw = PokemonRepository.load_pokemon_data()
 
     rows = []
     for pokemon in raw.values():
@@ -34,7 +34,7 @@ def load_pokemon_df() -> pd.DataFrame:
 
 
 def load_moves_df() -> pd.DataFrame:
-    raw = MoveRepository.get_moves_data()
+    raw = MoveRepository.load_moves_data()
 
     rows = [
         {

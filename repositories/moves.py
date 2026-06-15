@@ -22,17 +22,21 @@ class MoveRepository:
     _moves: ClassVar[dict[str, PokemonMove]] = {}
 
     @classmethod
-    def get_moves_data(cls) -> dict[str, MoveJson]:
+    def load_moves_data(cls) -> dict[str, MoveJson]:
         if cls._moves_data is None:
             cls._moves_data = read_file_data_json(POKEMON_MOVES_FILE_PATH)
         return cls._moves_data
+
+    @classmethod
+    def get_moves(cls) -> list[PokemonMove]:
+        return [cls.get(key) for key in cls.load_moves_data()]
 
     @classmethod
     def get(cls, name_id: str) -> PokemonMove:
         key = name_id.lower()
 
         if key not in cls._moves:
-            move_data = cls.get_moves_data().get(key)
+            move_data = cls.load_moves_data().get(key)
             if not move_data:
                 raise ValueError(f"Move '{name_id}' not found")
 

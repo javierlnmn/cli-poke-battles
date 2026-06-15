@@ -11,17 +11,21 @@ class TypeRepository:
     _types: ClassVar[dict[str, PokemonType]] = {}
 
     @classmethod
-    def get_types_data(cls) -> dict[str, TypeJson]:
+    def load_types_data(cls) -> dict[str, TypeJson]:
         if cls._types_data is None:
             cls._types_data = read_file_data_json(POKEMON_TYPES_FILE_PATH)
         return cls._types_data
+
+    @classmethod
+    def get_types(cls) -> list[PokemonType]:
+        return [cls.get(key) for key in cls.load_types_data()]
 
     @classmethod
     def get(cls, name_id: str) -> PokemonType:
         key = name_id.lower()
 
         if key not in cls._types:
-            type_data = cls.get_types_data().get(key)
+            type_data = cls.load_types_data().get(key)
             if not type_data:
                 raise ValueError(f"PokemonType '{name_id}' not found")
 

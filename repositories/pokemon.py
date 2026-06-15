@@ -15,17 +15,21 @@ class PokemonRepository:
     _pokemon: ClassVar[dict[str, Pokemon]] = {}
 
     @classmethod
-    def get_pokemon_data(cls) -> dict[str, PokemonJson]:
+    def load_pokemon_data(cls) -> dict[str, PokemonJson]:
         if cls._pokemon_data is None:
             cls._pokemon_data = read_file_data_json(POKEMON_DATA_FILE_PATH)
         return cls._pokemon_data
+
+    @classmethod
+    def get_pokemons(cls) -> list[Pokemon]:
+        return [cls.get(key) for key in cls.load_pokemon_data()]
 
     @classmethod
     def get(cls, key: str) -> Pokemon:
         key = key.lower()
 
         if key not in cls._pokemon:
-            pokemon_data = cls.get_pokemon_data().get(key)
+            pokemon_data = cls.load_pokemon_data().get(key)
             if not pokemon_data:
                 raise ValueError(f"Pokemon '{key}' not found")
 
@@ -35,21 +39,21 @@ class PokemonRepository:
 
     @classmethod
     def get_random(cls) -> Pokemon:
-        key = random.choice(list(cls.get_pokemon_data().keys()))
+        key = random.choice(list(cls.load_pokemon_data().keys()))
         return cls.get(key)
 
     @classmethod
     def get_pokemon_preview_list(cls) -> list[PokemonPreview]:
         return [
-            {
-                "key": key,
-                "visible_name": pokemon["name"].replace("-", " ").title(),
-                "type": pokemon["types"][0]["type"]["name"],
-                "color": pokemon["color"],
-                "base_experience": pokemon["base_experience"],
-                "stats": pokemon["stats"],
-            }
-            for key, pokemon in cls.get_pokemon_data().items()
+            PokemonPreview(
+                key=key,
+                visible_name=pokemon["name"].replace("-", " ").title(),
+                type=pokemon["types"][0]["type"]["name"],
+                color=pokemon["color"],
+                base_experience=pokemon["base_experience"],
+                stats=pokemon["stats"],
+            )
+            for key, pokemon in cls.load_pokemon_data().items()
         ]
 
     @classmethod

@@ -2086,15 +2086,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 22
-                    }
-                ]
-            },
-            {
                 "name": "water-gun",
                 "learn_details": [
                     {
@@ -2420,15 +2411,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 1
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 24
                     }
                 ]
             },
@@ -2762,15 +2744,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 1
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 24
                     }
                 ]
             },
@@ -5909,15 +5882,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 17
-                    }
-                ]
-            },
-            {
                 "name": "acid",
                 "learn_details": [
                     {
@@ -6193,15 +6157,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 1
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 17
                     }
                 ]
             },
@@ -7748,15 +7703,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 29
-                    }
-                ]
-            },
-            {
                 "name": "growl",
                 "learn_details": [
                     {
@@ -8032,15 +7978,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 14
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 32
                     }
                 ]
             },
@@ -11773,15 +11710,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 15
-                    }
-                ]
-            },
-            {
                 "name": "supersonic",
                 "learn_details": [
                     {
@@ -11998,19 +11926,6 @@
                     {
                         "move_learn_method": "machine",
                         "level_learned_at": 0
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 1
-                    },
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 15
                     }
                 ]
             },
@@ -14740,15 +14655,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 12
-                    }
-                ]
-            },
-            {
                 "name": "growl",
                 "learn_details": [
                     {
@@ -15015,19 +14921,6 @@
                     {
                         "move_learn_method": "machine",
                         "level_learned_at": 0
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 1
-                    },
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 12
                     }
                 ]
             },
@@ -16696,15 +16589,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 23
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 1
                     }
                 ]
             },
@@ -34087,15 +33971,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 26
-                    }
-                ]
-            },
-            {
                 "name": "water-gun",
                 "learn_details": [
                     {
@@ -38515,19 +38390,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 1
-                    },
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 20
-                    }
-                ]
-            },
-            {
                 "name": "water-gun",
                 "learn_details": [
                     {
@@ -39311,15 +39173,6 @@
                 ]
             },
             {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 37
-                    }
-                ]
-            },
-            {
                 "name": "growl",
                 "learn_details": [
                     {
@@ -39538,15 +39391,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 37
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 40
                     }
                 ]
             },
@@ -40190,15 +40034,6 @@
                     {
                         "move_learn_method": "level-up",
                         "level_learned_at": 42
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 40
                     }
                 ]
             },
@@ -42010,15 +41845,6 @@
                     {
                         "move_learn_method": "machine",
                         "level_learned_at": 0
-                    }
-                ]
-            },
-            {
-                "name": "bite",
-                "learn_details": [
-                    {
-                        "move_learn_method": "level-up",
-                        "level_learned_at": 38
                     }
                 ]
             },
