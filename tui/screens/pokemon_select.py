@@ -1,8 +1,6 @@
-import random
-
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import Container, HorizontalGroup, VerticalGroup
+from textual.containers import Container, VerticalGroup
 from textual.reactive import reactive
 from textual.screen import Screen
 from textual.widgets import Button
@@ -37,9 +35,7 @@ class PokemonSelectScreen(Screen):
 
     @on(Button.Pressed, "#pick-random")
     def action_pick_random(self):
-        pokemon_previews = PokemonRepository.get_pokemon_preview_list()
-        pokemon = random.choice(list(pokemon_previews))
-        self.selected_pokemon = pokemon
+        self.selected_pokemon = PokemonRepository.get_random_preview()
 
     @on(Button.Pressed, "#play")
     def action_play(self):
