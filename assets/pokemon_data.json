@@ -9581,8 +9581,8 @@
             {
                 "slot": 1,
                 "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
+                    "name": "normal",
+                    "url": ""
                 }
             }
         ],
@@ -9991,8 +9991,8 @@
             {
                 "slot": 1,
                 "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
+                    "name": "normal",
+                    "url": ""
                 }
             }
         ],
@@ -10857,13 +10857,6 @@
                     "name": "normal",
                     "url": "https://pokeapi.co/api/v2/type/1/"
                 }
-            },
-            {
-                "slot": 2,
-                "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
-                }
             }
         ],
         "abilities": [
@@ -11254,13 +11247,6 @@
                 "type": {
                     "name": "normal",
                     "url": "https://pokeapi.co/api/v2/type/1/"
-                }
-            },
-            {
-                "slot": 2,
-                "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
                 }
             }
         ],
@@ -36029,13 +36015,6 @@
                 "type": {
                     "name": "psychic",
                     "url": "https://pokeapi.co/api/v2/type/14/"
-                }
-            },
-            {
-                "slot": 2,
-                "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
                 }
             }
         ],

@@ -129,8 +129,41 @@ class PokemonService:
         except FileNotFoundError:
             return {}
 
+    @staticmethod
+    def _type_catalog() -> set[str]:
+        try:
+            from repositories import TypeRepository
+            return set(TypeRepository.load_types_data().keys())
+        except FileNotFoundError:
+            return set()
+
+    def _resolve_types(self, raw_types: list, name: str) -> list:
+        type_catalog = self._type_catalog()
+        if not type_catalog:
+            return raw_types
+
+        resolved = []
+        for slot in raw_types:
+            type_name = slot["type"]["name"]
+            if type_name in type_catalog:
+                resolved.append(slot)
+            else:
+                if len(raw_types) == 1:
+                    print(f"\n  '{name}' has unknown type '{type_name}' (only type).")
+                    print(f"  Known types: {', '.join(sorted(type_catalog))}")
+                    replacement = input("  Replace with (leave blank to skip): ").strip().lower()
+                    if replacement and replacement in type_catalog:
+                        new_slot = {"slot": slot["slot"], "type": {"name": replacement, "url": ""}}
+                        resolved.append(new_slot)
+                else:
+                    print(f"  '{name}': dropping unknown type '{type_name}' (has other types).")
+
+        return resolved
+
     def _trim_pokemon(self, raw) -> PokemonJson:
         data = {field: raw[field] for field in self.POKEMON_FIELDS}
+
+        data["types"] = self._resolve_types(raw["types"], raw["name"])
 
         move_catalog = self._move_catalog()
         data["moves"] = [

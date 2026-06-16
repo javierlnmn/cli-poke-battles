@@ -37,7 +37,16 @@ class TypeService:
         TypeRepository.clear_cache()
 
     def _trim_type(self, raw) -> TypeJson:
-        return {field: raw[field] for field in self.TYPE_FIELDS}
+        trimmed = {field: raw[field] for field in self.TYPE_FIELDS}
+        trimmed["damage_relations"] = {
+            relation: [t for t in types if self._is_gen1_type(t["url"])]
+            for relation, types in raw["damage_relations"].items()
+        }
+        return trimmed
+
+    def _is_gen1_type(self, url: str) -> bool:
+        type_id = int(url.rstrip("/").split("/")[-1])
+        return type_id <= self.LAST_TYPE_ID
 
 
 if __name__ == "__main__":
