@@ -79,6 +79,7 @@ class BattleEventAilment:
 BattleEventKind = (
     BattleEventMoveUsed
     | BattleEventDamage
+    | BattleEventNotAffected
     | BattleEventMissed
     | BattleEventFainted
     | BattleEventStatChange
