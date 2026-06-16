@@ -18,8 +18,8 @@ class VerticalScrollSelectList(Widget):
         """Sent when an item from the list is clicked"""
 
         def __init__(self, item: Any) -> None:
-            super().__init__()
             self.item = item
+            super().__init__()
 
     def compose(self) -> ComposeResult:
         with VerticalScroll():

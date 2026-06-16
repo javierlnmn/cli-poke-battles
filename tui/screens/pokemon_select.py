@@ -15,16 +15,13 @@ from tui.widgets.custom import PokemonSelectCard, SelectedPokemonPreview
 class PokemonSelectScreen(Screen):
     CSS_PATH = "pokemon_select.tcss"
 
-    selected_pokemon: reactive[PokemonPreview] = reactive(None, init=False)
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.pokemon_list = PokemonRepository.get_pokemon_preview_list()
+    pokemon_list = PokemonRepository.get_pokemon_preview_list()
+    selected_pokemon: reactive[PokemonPreview] = reactive(pokemon_list[0], init=False)
 
     def compose(self) -> ComposeResult:
         yield VerticalScrollSelectList(items_list=self.pokemon_list, item_widget=PokemonSelectCard)
         with VerticalGroup():
-            yield SelectedPokemonPreview(default_pokemon=self.pokemon_list[0])
+            yield SelectedPokemonPreview(default_pokemon=self.selected_pokemon)
             with Container(classes="buttons-container"):
                 yield Button("Go back", id="go-back", variant="warning")
                 yield Button("Pick random", id="pick-random", variant="success")
@@ -40,7 +37,7 @@ class PokemonSelectScreen(Screen):
 
     @on(Button.Pressed, "#play")
     def action_play(self):
-        self.app.push_screen(BattleScreen(self.selected_pokemon))
+        self.app.push_screen(BattleScreen(self.selected_pokemon.key))
 
     def on_vertical_scroll_select_list_item_clicked(
         self, message: VerticalScrollSelectList.ItemClicked

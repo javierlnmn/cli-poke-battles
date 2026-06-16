@@ -1,0 +1,46 @@
+.battle-pokemons-container {
+    layout: grid;
+    grid-size: 2 1;
+    grid-columns: 1fr 1fr;
+}
+
+.battle-pokemon-container {
+    height: 100%;
+    width: 100%;
+    content-align: center middle;
+}
+
+.battle-pokemon-container Label {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content-align: center middle;
+}
+
+.battle-prompt {
+    width: 100%;
+    height: 7;
+    padding: 1 3;
+    border-top: heavy $secondary;
+    border-bottom: heavy $secondary;
+    border-left: dashed $secondary;
+    border-right: dashed $secondary;
+    background: $panel;
+    color: $foreground;
+    text-style: bold italic;
+    content-align: left middle;
+}
+
+.battle-buttons-container {
+    dock: bottom;
+    layout: grid;
+    grid-size: 2 2;
+    height: 10;
+    grid-columns: 1fr 1fr;
+    grid-rows: 1fr 1fr;
+}
+
+.battle-buttons-container Button {
+    height: 100%;
+    width: 100%;
+}
