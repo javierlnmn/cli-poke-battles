@@ -5,8 +5,8 @@ from textual.reactive import reactive
 from textual.screen import Screen
 from textual.widgets import Button
 
-from repositories import PokemonRepository
-from schemas import PokemonPreview
+from core.repositories import PokemonRepository
+from core.schemas import PokemonPreview
 from tui.screens import BattleScreen
 from tui.widgets.common import VerticalScrollSelectList
 from tui.widgets.custom import PokemonSelectCard, SelectedPokemonPreview

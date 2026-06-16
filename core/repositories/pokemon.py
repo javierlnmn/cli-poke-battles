@@ -2,12 +2,12 @@ import random
 from pathlib import Path
 from typing import ClassVar
 
-from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
-from entities.pokemon import Pokemon, PokemonMoveMetadata, PokemonStats
-from repositories.moves import MoveRepository
-from repositories.types import TypeRepository
-from schemas import PokemonJson, PokemonPreview
-from utils.files import read_file_data, read_file_data_json
+from core.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
+from core.entities.pokemon import Pokemon, PokemonMoveMetadata, PokemonStats
+from core.repositories.moves import MoveRepository
+from core.repositories.types import TypeRepository
+from core.schemas import PokemonJson, PokemonPreview
+from core.utils.files import read_file_data, read_file_data_json
 
 
 class PokemonRepository:

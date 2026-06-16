@@ -3,10 +3,10 @@ import time
 
 import requests
 
-from config.config import POKEMON_MOVES_FILE_PATH
-from repositories import MoveRepository, TypeRepository
-from schemas import MoveJson
-from utils.files import write_file_data
+from core.config import POKEMON_MOVES_FILE_PATH
+from core.repositories import MoveRepository, TypeRepository
+from core.schemas import MoveJson
+from core.utils.files import write_file_data
 
 
 class MoveService:

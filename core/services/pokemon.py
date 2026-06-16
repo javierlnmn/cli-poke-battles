@@ -6,10 +6,10 @@ from pathlib import Path
 import requests
 from PIL import Image
 
-from config.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
-from repositories import MoveRepository, PokemonRepository
-from schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
-from utils.files import write_file_data
+from core.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
+from core.repositories import MoveRepository, PokemonRepository
+from core.schemas import MoveLearnDetailJson, PokemonJson, PokemonMoveJson
+from core.utils.files import write_file_data
 
 
 class PokemonService:
@@ -54,7 +54,7 @@ class PokemonService:
         ascii_arts = {}
         for dex in range(1, self.FIRST_GEN_POKEMON_COUNT + 1):
             raw = self.session.get(f"https://pokeapi.co/api/v2/pokemon/{dex}", timeout=20).json()
-            name = raw["name"].replace("-", "_")
+            name = raw["name"]
             ascii_art = self._build_ascii(raw)
             if ascii_art is not None:
                 ascii_arts[name] = ascii_art
@@ -132,7 +132,8 @@ class PokemonService:
     @staticmethod
     def _type_catalog() -> set[str]:
         try:
-            from repositories import TypeRepository
+            from core.repositories import TypeRepository
+
             return set(TypeRepository.load_types_data().keys())
         except FileNotFoundError:
             return set()

@@ -3,10 +3,10 @@ import time
 
 import requests
 
-from config.config import POKEMON_TYPES_FILE_PATH
-from repositories import TypeRepository
-from schemas import TypeJson
-from utils.files import write_file_data
+from core.config import POKEMON_TYPES_FILE_PATH
+from core.repositories import TypeRepository
+from core.schemas import TypeJson
+from core.utils.files import write_file_data
 
 
 class TypeService:

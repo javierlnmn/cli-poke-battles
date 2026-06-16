@@ -5,8 +5,8 @@ from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Label
 
-from repositories import PokemonRepository
-from schemas import PokemonPreview
+from core.repositories import PokemonRepository
+from core.schemas import PokemonPreview
 
 STAT_LABELS = {
     "hp": "HP",

@@ -3,7 +3,7 @@ from textual.containers import Horizontal
 from textual.widget import Widget
 from textual.widgets import Label
 
-from schemas import PokemonPreview
+from core.schemas import PokemonPreview
 
 
 class PokemonSelectCard(Widget):

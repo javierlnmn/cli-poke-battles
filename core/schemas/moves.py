@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from schemas.common import LocalizedNameJson, NamedResourceJson
+from core.schemas.common import LocalizedNameJson, NamedResourceJson
 
 
 class MoveMetaJson(TypedDict):

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from entities.moves import PokemonMove
-from entities.types import PokemonType
+from core.entities.moves import PokemonMove
+from core.entities.types import PokemonType
 
 
 @dataclass

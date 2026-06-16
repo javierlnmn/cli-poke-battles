@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from entities.types import PokemonType
+from core.entities.types import PokemonType
 
 
 class DamageClassEnum(Enum):

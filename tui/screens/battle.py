@@ -4,8 +4,8 @@ from textual.containers import Container
 from textual.screen import Screen
 from textual.widgets import Button, Label
 
-from entities import Battle, BattlePokemon
-from repositories import PokemonRepository
+from core.entities import Battle, BattlePokemon
+from core.repositories import PokemonRepository
 from tui.widgets.custom.pokemon_battle_hud import PokemonBattleHUD
 
 

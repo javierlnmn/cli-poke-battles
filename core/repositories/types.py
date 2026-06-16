@@ -1,9 +1,9 @@
 from typing import ClassVar
 
-from config.config import POKEMON_TYPES_FILE_PATH
-from entities.types import PokemonType
-from schemas import NamedResourceJson, TypeJson
-from utils.files import read_file_data_json
+from core.config import POKEMON_TYPES_FILE_PATH
+from core.entities.types import PokemonType
+from core.schemas import NamedResourceJson, TypeJson
+from core.utils.files import read_file_data_json
 
 
 class TypeRepository:

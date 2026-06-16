@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from entities.pokemon import Pokemon, PokemonMove, PokemonStats
+from core.entities.pokemon import Pokemon, PokemonMove, PokemonStats
 
 
 @dataclass

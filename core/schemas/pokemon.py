@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import TypedDict
 
-from schemas.common import NamedResourceJson
+from core.schemas.common import NamedResourceJson
 
 
 class PokemonStatJson(TypedDict):

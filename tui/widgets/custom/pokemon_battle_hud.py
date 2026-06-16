@@ -3,7 +3,7 @@ from textual.app import ComposeResult
 from textual.widget import Widget
 from textual.widgets import Static
 
-from entities import BattlePokemon
+from core.entities import BattlePokemon
 
 
 class PokemonBattleHUD(Widget):

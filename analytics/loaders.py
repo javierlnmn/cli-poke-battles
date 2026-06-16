@@ -1,6 +1,6 @@
 import pandas as pd
 
-from repositories import MoveRepository, PokemonRepository
+from core.repositories import MoveRepository, PokemonRepository
 
 STAT_COLUMNS = [
     "hp",

@@ -1,6 +1,6 @@
-from schemas.common import LocalizedNameJson, NamedResourceJson
-from schemas.moves import MoveJson, MoveMetaJson
-from schemas.pokemon import (
+from core.schemas.common import LocalizedNameJson, NamedResourceJson
+from core.schemas.moves import MoveJson, MoveMetaJson
+from core.schemas.pokemon import (
     MoveLearnDetailJson,
     PokemonAbilityJson,
     PokemonJson,
@@ -9,7 +9,7 @@ from schemas.pokemon import (
     PokemonStatJson,
     PokemonTypeSlotJson,
 )
-from schemas.types import DamageRelationsJson, TypeJson
+from core.schemas.types import DamageRelationsJson, TypeJson
 
 __all__ = [
     "NamedResourceJson",

@@ -4,10 +4,10 @@ from textual.containers import HorizontalGroup
 from textual.screen import Screen
 from textual.widgets import Button, Label, Link, Static
 
-from config.config import REPO_LINK
-from utils.files import read_file_data
+from core.config import POKEMON_LOGO_PATH, REPO_LINK
+from core.utils.files import read_file_data
 
-POKEMON_LOGO = read_file_data("assets/ascii_art/pokemon_logo")
+POKEMON_LOGO = read_file_data(POKEMON_LOGO_PATH)
 
 
 class MainMenuScreen(Screen):

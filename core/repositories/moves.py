@@ -1,7 +1,7 @@
 from typing import ClassVar
 
-from config.config import POKEMON_MOVES_FILE_PATH
-from entities.moves import (
+from core.config import POKEMON_MOVES_FILE_PATH
+from core.entities.moves import (
     AilmentEnum,
     CategoryEnum,
     DamageClassEnum,
@@ -12,9 +12,9 @@ from entities.moves import (
     PokemonMove,
     TargetEnum,
 )
-from repositories.types import TypeRepository
-from schemas import MoveJson
-from utils.files import read_file_data_json
+from core.repositories.types import TypeRepository
+from core.schemas import MoveJson
+from core.utils.files import read_file_data_json
 
 
 class MoveRepository:
