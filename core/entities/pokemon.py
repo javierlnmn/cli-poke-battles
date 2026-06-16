@@ -1,7 +1,17 @@
 from dataclasses import dataclass
+from enum import Enum
 
 from core.entities.moves import PokemonMove
 from core.entities.types import PokemonType
+
+
+class StatEnum(Enum):
+    HP = "hp"
+    ATTACK = "attack"
+    DEFENSE = "defense"
+    SP_ATTACK = "sp_attack"
+    SP_DEFENSE = "sp_defense"
+    SPEED = "speed"
 
 
 @dataclass
