@@ -1,6 +1,6 @@
-# Pokè-Battles
+# Poké-Battles
 
-The overall concept of the app is to play Pokèmon battles in your command line against the machine (*this may be improved in the future*).
+The overall concept of the app is to play Pokémon battles in your command line against the machine (*this may be improved in the future*).
 
 ## Project Structure
 
@@ -38,7 +38,7 @@ It's recommended to play fullscreen or in a big window.
 
 ## Data
 
-All Pokèmon, move and type data lives in `core/assets/` as JSON, and the ASCII sprites live in `core/assets/ascii_art/pokemon_ascii/`. These data are fetched from [PokeAPI](https://pokeapi.co/) by the services in `core/services/`.
+All Pokémon, move and type data lives in `core/assets/` as JSON, and the ASCII sprites live in `core/assets/ascii_art/pokemon_ascii/`. These data are fetched from [PokeAPI](https://pokeapi.co/) by the services in `core/services/`.
 
 To update every resource at once:
 
@@ -55,7 +55,7 @@ poetry run python -m core.services.types
 # Moves (Gen 1, #1-165) -> core/assets/pokemon_moves_data.json
 poetry run python -m core.services.moves
 
-# Pokèmon (Gen 1, #1-151) -> core/assets/pokemon_data.json + ascii sprites
+# Pokémon (Gen 1, #1-151) -> core/assets/pokemon_data.json + ascii sprites
 poetry run python -m core.services.pokemon
 ```
 
@@ -63,11 +63,11 @@ poetry run python -m core.services.pokemon
 > The services hit the public PokeAPI, so they need an internet connection and take a little while to run.
 
 > [!NOTE]
-> Update types and moves before Pokèmon: the Pokèmon service filters each Pokèmon's moveset against the moves catalog and validates types. `python -m commands.update_assets` already runs them in the right order.
+> Update types and moves before Pokémon: the Pokémon service filters each Pokémon's moveset against the moves catalog and validates types. `python -m commands.update_assets` already runs them in the right order.
 
 ### Analytics
 
-There's an analytics dashboard built with *Streamlit* and *matplotlib* that visualizes the Pokèmon and move data (stat distributions, base experience and type counts).
+There's an analytics dashboard built with *Streamlit* and *matplotlib* that visualizes the Pokémon and move data (stat distributions, base experience and type counts).
 
 Run it from the project root with:
 
