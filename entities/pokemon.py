@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from entities.moves import BattlePokemonMove, PokemonMove
+from entities.moves import PokemonMove
 from entities.types import PokemonType
 
 
@@ -23,18 +23,10 @@ class PokemonMoveMetadata:
 @dataclass(frozen=True)
 class Pokemon:
     id: int
+    key: str
     name: str
-    visible_name: str
     base_experience: int
     stats: PokemonStats
     types: list[PokemonType]
-    moves: list[PokemonMoveMetadata]
+    moves_metadata: list[PokemonMoveMetadata]
     color: str
-
-
-@dataclass
-class BattlePokemon:
-    pokemon: Pokemon
-    current_hp: int
-    current_stats: PokemonStats
-    current_moves: list[BattlePokemonMove]

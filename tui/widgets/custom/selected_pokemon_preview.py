@@ -96,9 +96,9 @@ class SelectedPokemonPreview(Widget):
     pokemon: reactive[PokemonPreview] = reactive(None, init=False)
 
     def __init__(self, default_pokemon: PokemonPreview) -> None:
-        super().__init__()
         self._default_pokemon = default_pokemon
         self._default_pokemon_ascii_art = PokemonRepository.get_pokemon_ascii_art(default_pokemon.key)
+        super().__init__()
 
     def _colored_ascii(self, ascii_art: str, color: str) -> Text:
         return Text(ascii_art, style=color, no_wrap=True)
@@ -121,10 +121,7 @@ class SelectedPokemonPreview(Widget):
             )
 
         with Container(classes="data-panel"):
-            yield Label(
-                self._default_pokemon.visible_name.upper(),
-                id="pokemon-name",
-            )
+            yield Label(self._default_pokemon.name.upper(), id="pokemon-name")
 
             with Container(classes="info-row"):
                 yield Label("Type", classes="row-label")
@@ -164,7 +161,7 @@ class SelectedPokemonPreview(Widget):
         ascii_art = PokemonRepository.get_pokemon_ascii_art(pokemon.key)
 
         self.query_one("#pokemon-ascii-art", Label).update(self._colored_ascii(ascii_art, pokemon.color))
-        self.query_one("#pokemon-name", Label).update(pokemon.visible_name.upper())
+        self.query_one("#pokemon-name", Label).update(pokemon.name.upper())
         self.query_one("#pokemon-type", Label).update(pokemon.type.capitalize())
         self.query_one("#pokemon-xp", Label).update(str(pokemon.base_experience))
         self.query_one(".data-panel").styles.border_left = ("heavy", pokemon.color)

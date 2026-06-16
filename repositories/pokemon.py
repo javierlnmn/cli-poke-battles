@@ -39,21 +39,21 @@ class PokemonRepository:
 
     @classmethod
     def get_random(cls) -> Pokemon:
-        key = random.choice(list(cls.load_pokemon_data().keys()))
-        return cls.get(key)
+        name = random.choice(list(cls.load_pokemon_data().keys()))
+        return cls.get(name)
 
     @classmethod
     def get_pokemon_preview_list(cls) -> list[PokemonPreview]:
         return [
             PokemonPreview(
-                key=key,
-                visible_name=pokemon["name"].replace("-", " ").title(),
+                key=name,
+                name=pokemon["name"].replace("-", " ").title(),
                 type=pokemon["types"][0]["type"]["name"],
                 color=pokemon["color"],
                 base_experience=pokemon["base_experience"],
                 stats=pokemon["stats"],
             )
-            for key, pokemon in cls.load_pokemon_data().items()
+            for name, pokemon in cls.load_pokemon_data().items()
         ]
 
     @classmethod
@@ -85,18 +85,18 @@ class PokemonRepository:
 
         types_list = [TypeRepository.get(type["type"]["name"]) for type in data["types"]]
 
-        pokemon_moves_data = [
+        pokemon_moves_metadata = [
             PokemonMoveMetadata(level_learned_at=move["learn_details"], move=MoveRepository.get(move["name"]))
             for move in data["moves"]
         ]
 
         return Pokemon(
             id=data["id"],
-            name=data["name"],
-            visible_name=data["name"].capitalize(),
+            key=data["name"],
+            name=data["name"].replace("-", " ").title(),
             base_experience=data["base_experience"],
             stats=PokemonStats(**pokemon_stats),
             types=types_list,
-            moves=pokemon_moves_data,
+            moves_metadata=pokemon_moves_metadata,
             color=data["color"],
         )

@@ -45,11 +45,10 @@ class PokemonSelectCard(Widget):
         super().__init__()
 
     def compose(self) -> ComposeResult:
-        data = self.pokemon_preview_data
         with Horizontal(classes="card-header"):
-            yield Label(data.visible_name, classes="card-name")
-            yield Label(data.type.capitalize(), classes="card-type")
-        yield Label(f"Base XP: {data.base_experience}", classes="card-xp")
+            yield Label(self.pokemon_preview_data.name, classes="card-name")
+            yield Label(self.pokemon_preview_data.type.capitalize(), classes="card-type")
+        yield Label(f"Base XP: {self.pokemon_preview_data.base_experience}", classes="card-xp")
 
     def on_mount(self) -> None:
         color = self.pokemon_preview_data.color

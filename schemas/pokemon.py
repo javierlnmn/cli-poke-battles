@@ -47,7 +47,7 @@ class PokemonJson(TypedDict):
 @dataclass(frozen=True)
 class PokemonPreview:
     key: str
-    visible_name: str
+    name: str
     type: str
     color: str
     base_experience: int

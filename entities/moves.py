@@ -100,10 +100,3 @@ class PokemonMove:
     hits_limit: MoveHits
     turns_limit: MoveTurns
     stat_changes: list[MoveStatChange]
-
-
-@dataclass
-class BattlePokemonMove:
-    move: PokemonMove
-    current_pp: int
-    enabled: bool
