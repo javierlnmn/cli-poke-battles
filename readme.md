@@ -25,6 +25,21 @@ cli-poke-battles/
 └── analytics/            # Streamlit analytics dashboard
 ```
 
+## Development
+
+Install dependencies and set up the pre-commit hooks:
+
+```bash
+poetry install --with dev
+poetry run pre-commit install
+```
+
+Linting and formatting (ruff) will run automatically on every commit. To run them manually:
+
+```bash
+poetry run pre-commit run --all-files
+```
+
 ## Playing
 
 Run the game from the project root with:
