@@ -91,9 +91,9 @@ BattleEventKind = (
 class BattleEvent:
     kind: BattleEventKindEnum
     actor: BattlePokemon
-    target: BattlePokemon | None = None
     payload: BattleEventKind
     text_detail: str
+    target: BattlePokemon | None = None
 
 
 @dataclass(frozen=True)
