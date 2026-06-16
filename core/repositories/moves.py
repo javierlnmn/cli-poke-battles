@@ -62,8 +62,8 @@ class MoveRepository:
 
         return PokemonMove(
             id=data["id"],
-            name=data["name"],
-            visible_name=visible_name,
+            key=data["name"],
+            name=visible_name,
             type=TypeRepository.get(data["type"]["name"]),
             damage_class=DamageClassEnum(data["damage_class"]["name"]),
             power=data["power"],

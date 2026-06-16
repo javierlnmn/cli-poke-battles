@@ -31,24 +31,24 @@ class BattleScreen(Screen):
                 yield Label(
                     Text(
                         self.user_pokemon__ascii,
-                        style=self.battle.battle_pokemon_1.pokemon.color,
+                        style=self.battle.battle_pokemon1.pokemon.color,
                         no_wrap=True,
                     )
                 )
-                yield PokemonBattleHUD(self.battle.battle_pokemon_1)
+                yield PokemonBattleHUD(self.battle.battle_pokemon1)
 
             with Container(classes="battle-pokemon-container"):
                 yield Label(
                     Text(
                         self.cpu_pokemon__ascii,
-                        style=self.battle.battle_pokemon_2.pokemon.color,
+                        style=self.battle.battle_pokemon2.pokemon.color,
                         no_wrap=True,
                     )
                 )
-                yield PokemonBattleHUD(self.battle.battle_pokemon_2)
+                yield PokemonBattleHUD(self.battle.battle_pokemon2)
 
         yield Label(
-            f"What should {self.battle.battle_pokemon_1.pokemon.name} do next?", classes="battle-prompt"
+            f"What should {self.battle.battle_pokemon1.pokemon.name} do next?", classes="battle-prompt"
         )
 
         with Container(classes="battle-buttons-container"):

@@ -4,8 +4,8 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class PokemonType:
     id: int
+    key: str
     name: str
-    visible_name: str
     double_damage_from: list[str]
     double_damage_to: list[str]
     half_damage_from: list[str]

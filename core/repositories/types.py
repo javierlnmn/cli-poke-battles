@@ -51,8 +51,8 @@ class TypeRepository:
 
         return PokemonType(
             id=data["id"],
-            name=data["name"],
-            visible_name=visible_name,
+            key=data["name"],
+            name=visible_name,
             double_damage_from=_extract_damage_relation_name(damage_relations["double_damage_from"]),
             double_damage_to=_extract_damage_relation_name(damage_relations["double_damage_to"]),
             half_damage_from=_extract_damage_relation_name(damage_relations["half_damage_from"]),

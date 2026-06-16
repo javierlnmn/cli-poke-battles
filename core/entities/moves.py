@@ -82,8 +82,8 @@ class MoveTurns:
 @dataclass(frozen=True)
 class PokemonMove:
     id: int
+    key: str
     name: str
-    visible_name: str
     type: PokemonType
     damage_class: DamageClassEnum
     power: int | None
