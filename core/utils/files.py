@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def read_file_data(file_path: str) -> str:
-    return Path(file_path).read_text()
+    return Path(file_path).read_text(encoding="utf-8")
 
 
 def read_file_data_json(file_path: str) -> str:
