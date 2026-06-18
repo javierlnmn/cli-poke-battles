@@ -1,18 +1,17 @@
 MainMenuScreen {
-    align-horizontal: center;
-    align-vertical: middle;
+    align: center middle;
 }
 
 .logo {
+    width: 100%;
     color: $secondary;
-    width: auto;
     text-style: bold;
+    text-align: center;
 }
 
 .subtitle-container {
     padding-top: 2;
-    width: 64;
-    text-align: center;
+    width: 100%;
     align: center middle;
     color: $secondary;
     text-style: bold;
@@ -23,7 +22,7 @@ MainMenuScreen {
 }
 
 .menu-buttons-container {
-    width: 64;
+    width: 100%;
     padding-top: 3;
     align-horizontal: center;
 }
