@@ -28,31 +28,33 @@ class BattleScreen(Screen):
     def compose(self) -> ComposeResult:
         with Container(classes="battle-pokemons-container"):
             with Container(classes="battle-pokemon-container"):
+                yield PokemonBattleHUD(self.battle.battle_pokemon1)
                 yield Label(
                     Text(
                         self.user_pokemon__ascii,
                         style=self.battle.battle_pokemon1.pokemon.color,
                         no_wrap=True,
-                    )
+                    ),
+                    classes="pokemon-ascii-art",
                 )
-                yield PokemonBattleHUD(self.battle.battle_pokemon1)
 
             with Container(classes="battle-pokemon-container"):
+                yield PokemonBattleHUD(self.battle.battle_pokemon2)
                 yield Label(
                     Text(
                         self.cpu_pokemon__ascii,
                         style=self.battle.battle_pokemon2.pokemon.color,
                         no_wrap=True,
-                    )
+                    ),
+                    classes="pokemon-ascii-art",
                 )
-                yield PokemonBattleHUD(self.battle.battle_pokemon2)
 
         yield Label(
             f"What should {self.battle.battle_pokemon1.pokemon.name} do next?", classes="battle-prompt"
         )
 
         with Container(classes="battle-buttons-container"):
-            yield Button("Button 1")
-            yield Button("Button 2")
-            yield Button("Button 3")
-            yield Button("Button 4")
+            yield Button("Button 1", classes="move-button")
+            yield Button("Button 2", classes="move-button")
+            yield Button("Button 3", classes="move-button")
+            yield Button("Button 4", classes="move-button")

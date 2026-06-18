@@ -18,11 +18,14 @@ class BattlePokemon:
     def __init__(
         self,
         pokemon: Pokemon,
+        *,
         current_hp: int | None = None,
+        current_ailment: list[AilmentEnum] = [],
         current_stats: PokemonStats | None = None,
         current_moves: tuple[BattlePokemonMove] | None = None,
     ) -> None:
         self.pokemon = pokemon
+        self.current_ailment = current_ailment or []
         self.current_hp = current_hp if (current_hp is not None and current_hp > 0) else pokemon.stats.hp
         self.current_stats = current_stats or pokemon.stats
         self.current_moves = current_moves or [

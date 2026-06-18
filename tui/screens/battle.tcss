@@ -8,7 +8,7 @@
     layout: vertical;
 }
 
-.battle-pokemon-container Label {
+.battle-pokemon-container .pokemon-ascii-art {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -16,8 +16,8 @@
 }
 
 .battle-pokemon-container PokemonBattleHUD {
-    dock: bottom;
-    height: 6;
+    dock: top;
+    height: 5;
     margin: 2 5;
 }
 
@@ -44,7 +44,7 @@
     grid-rows: 1fr 1fr;
 }
 
-.battle-buttons-container Button {
+.battle-buttons-container .move-button {
     height: 100%;
     width: 100%;
 }
