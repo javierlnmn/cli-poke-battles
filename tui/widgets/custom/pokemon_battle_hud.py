@@ -1,6 +1,7 @@
 from rich.text import Text
 from textual.app import ComposeResult
 from textual.containers import Container
+from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Label, Static
 
@@ -16,21 +17,29 @@ class PokemonBattleHealthBar(Widget):
         background: #3F3F3F; # $boost
     }
     PokemonBattleHealthBar .health-bar {
-        width: 50%;
         offset: 0 -1;
         height: 1;
         background: green;
     }
     """
 
-    def __init__(self, *, max_health: int, curent_health: int | None = None):
-        self.current_health = curent_health or max_health
+    current_health: reactive[int] = reactive(0)
+
+    def __init__(self, *, max_health: int, current_health: int | None = None):
+        self._initial_health = current_health or max_health
         self.max_health = max_health
         super().__init__()
+
+    def on_mount(self) -> None:
+        self.current_health = self._initial_health
 
     def compose(self) -> ComposeResult:
         yield Static(classes="placeholder-bar")
         yield Static(classes="health-bar")
+
+    def watch_current_health(self, current_health: int) -> None:
+        health_percentage = (current_health / self.max_health) * 100
+        self.query_one(".health-bar", Static).styles.width = f"{health_percentage}%"
 
 
 class PokemonAilmentBadge(Widget):
