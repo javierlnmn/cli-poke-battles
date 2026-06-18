@@ -156,10 +156,13 @@ class Battle:
         pokemon1_battle_move = self.battle_pokemon1.resolve_move_index(battle_pokemon1_move_index)
         pokemon2_battle_move = self.battle_pokemon2.resolve_move_index(battle_pokemon2_move_index)
 
-        (first_pokemon_slot, second_pokemon_slot) = self.get_pokemon_attacking_order(
+        attacking_order_slots = self.get_pokemon_attacking_order(
             pokemon1_battle_move.move,
             pokemon2_battle_move.move,
         )
+
+        for slot in attacking_order_slots:
+            battle_pokemon = [self.battle_pokemon1, self.battle_pokemon2][slot.value]
 
         # # within pokemon turn:
         # #   calculate damage formula
@@ -178,12 +181,10 @@ class Battle:
     ) -> tuple[PokemonOrderSlot, PokemonOrderSlot]:
         return (
             self._check_moves_priorities(move1, move2)
+            # TODO: Check ailments
             or self._check_battle_pokemons_speed()
             or self._order_by_random_tiebreak()
         )
-
-    def _battle_pokemon(self, slot: PokemonOrderSlot) -> BattlePokemon:
-        return (self.battle_pokemon1, self.battle_pokemon2)[slot.value]
 
     def _check_moves_priorities(
         self,
