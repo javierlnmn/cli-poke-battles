@@ -4,6 +4,7 @@ from typing import ClassVar
 
 from core.config import POKEMON_ASCII_ART_PATH, POKEMON_DATA_FILE_PATH
 from core.entities.pokemon import Pokemon, PokemonMoveMetadata, PokemonStats
+from core.exceptions import ResourceNotFoundError
 from core.repositories.moves import MoveRepository
 from core.repositories.types import TypeRepository
 from core.schemas import PokemonJson, PokemonPreview
@@ -31,7 +32,7 @@ class PokemonRepository:
         if key not in cls._pokemon:
             pokemon_data = cls.load_pokemon_data().get(key)
             if not pokemon_data:
-                raise ValueError(f"Pokemon '{key}' not found")
+                raise ResourceNotFoundError(f"Pokemon '{key}' not found")
 
             cls._pokemon[key] = cls._build(pokemon_data)
 

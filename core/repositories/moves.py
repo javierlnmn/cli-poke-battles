@@ -12,6 +12,7 @@ from core.entities.moves import (
     PokemonMove,
     TargetEnum,
 )
+from core.exceptions import ResourceNotFoundError
 from core.repositories.types import TypeRepository
 from core.schemas import MoveJson
 from core.utils.files import read_file_data_json
@@ -38,7 +39,7 @@ class MoveRepository:
         if key not in cls._moves:
             move_data = cls.load_moves_data().get(key)
             if not move_data:
-                raise ValueError(f"Move '{name_id}' not found")
+                raise ResourceNotFoundError(f"Move '{name_id}' not found")
 
             cls._moves[key] = cls._build(move_data)
 
