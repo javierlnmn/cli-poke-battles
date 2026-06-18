@@ -2,11 +2,11 @@ from rich.text import Text
 from textual.app import ComposeResult
 from textual.containers import Container
 from textual.screen import Screen
-from textual.widgets import Button, Label
+from textual.widgets import Label
 
 from core.entities import Battle, BattlePokemon
 from core.repositories import PokemonRepository
-from tui.widgets.custom.pokemon_battle_hud import PokemonBattleHUD
+from tui.widgets.custom import PokemonBattleHUD, PokemonBattleMoveButtons
 
 
 class BattleScreen(Screen):
@@ -50,11 +50,8 @@ class BattleScreen(Screen):
                 )
 
         yield Label(
-            f"What should {self.battle.battle_pokemon1.pokemon.name} do next?", classes="battle-prompt"
+            f"What should {self.battle.battle_pokemon1.pokemon.name} do next?",
+            classes="battle-prompt",
         )
 
-        with Container(classes="battle-buttons-container"):
-            yield Button("Button 1", classes="move-button")
-            yield Button("Button 2", classes="move-button")
-            yield Button("Button 3", classes="move-button")
-            yield Button("Button 4", classes="move-button")
+        yield PokemonBattleMoveButtons(battle_pokemon_moves=self.battle.battle_pokemon1.current_moves)

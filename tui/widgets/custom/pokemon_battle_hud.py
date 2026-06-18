@@ -6,7 +6,7 @@ from textual.widget import Widget
 from textual.widgets import Label, Static
 
 from core.entities import BattlePokemon
-from core.entities.moves import AilmentEnum
+from tui.widgets.custom.pokemon_ailment_badge import PokemonAilmentBadge
 
 
 class PokemonBattleHealthBar(Widget):
@@ -42,49 +42,6 @@ class PokemonBattleHealthBar(Widget):
         self.query_one(".health-bar", Static).styles.width = f"{health_percentage}%"
 
 
-class PokemonAilmentBadge(Widget):
-    DEFAULT_CSS = """
-    PokemonAilmentBadge .badge {
-        color: auto 80%;
-        padding: 0 1;
-    }
-    PokemonAilmentBadge .badge.poison {
-        background: purple;
-    }
-    PokemonAilmentBadge .badge.burn {
-        background: orange;
-    }
-    PokemonAilmentBadge .badge.paralysis {
-        background: yellow;
-    }
-    PokemonAilmentBadge .badge.sleep {
-        background: grey;
-    }
-
-    PokemonAilmentBadge .badge.freeze {
-        background: blue;
-    }
-    """
-
-    AILMENT_STATUS_UI_MAP = {
-        AilmentEnum.POISON: {"label": "POI", "class": "poison"},
-        AilmentEnum.BURN: {"label": "BUR", "class": "burn"},
-        AilmentEnum.PARALYSIS: {"label": "PAR", "class": "paralysis"},
-        AilmentEnum.SLEEP: {"label": "SLE", "class": "sleep"},
-        AilmentEnum.FREEZE: {"label": "FRE", "class": "freeze"},
-    }
-
-    def __init__(self, *, ailment: AilmentEnum | None = None):
-        self.ailment = ailment
-        super().__init__()
-
-    def compose(self) -> ComposeResult:
-        yield Label(
-            self.AILMENT_STATUS_UI_MAP[self.ailment]["label"] if self.ailment else "",
-            classes=f"badge {self.AILMENT_STATUS_UI_MAP[self.ailment]['class']}" if self.ailment else "",
-        )
-
-
 class PokemonBattleHUD(Widget):
     DEFAULT_CSS = """
     PokemonBattleHUD {
@@ -114,5 +71,8 @@ class PokemonBattleHUD(Widget):
     def compose(self) -> ComposeResult:
         with Container(classes="name-ailment-container"):
             yield Label(Text(self.battle_pokemon.pokemon.name), classes="name")
-            yield PokemonAilmentBadge(ailment=self.battle_pokemon.get_current_major_ailment())
+
+            current_major_ailment = self.battle_pokemon.get_current_major_ailment()
+            if current_major_ailment:
+                yield PokemonAilmentBadge(ailment=current_major_ailment)
         yield PokemonBattleHealthBar(max_health=self.battle_pokemon.pokemon.stats.hp)

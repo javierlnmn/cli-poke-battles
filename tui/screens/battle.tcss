@@ -35,16 +35,8 @@
     content-align: left middle;
 }
 
-.battle-buttons-container {
+PokemonBattleMoveButtons {
     dock: bottom;
-    layout: grid;
-    grid-size: 2 2;
     height: 10;
-    grid-columns: 1fr 1fr;
-    grid-rows: 1fr 1fr;
 }
 
-.battle-buttons-container .move-button {
-    height: 100%;
-    width: 100%;
-}
