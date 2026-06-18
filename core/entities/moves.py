@@ -11,17 +11,29 @@ class DamageClassEnum(Enum):
 
 
 class AilmentEnum(Enum):
-    NONE = "none"
-    UNKNOWN = "unknown"
+    # Major ailments: they canot affect a Pokémon simultaneously
     BURN = "burn"
-    CONFUSION = "confusion"
-    DISABLE = "disable"
     FREEZE = "freeze"
-    LEECH_SEED = "leech-seed"
     PARALYSIS = "paralysis"
     POISON = "poison"
     SLEEP = "sleep"
+
+    # Rest of the ailments
+    NONE = "none"
+    UNKNOWN = "unknown"
+    CONFUSION = "confusion"
+    DISABLE = "disable"
+    LEECH_SEED = "leech-seed"
     TRAP = "trap"
+
+
+MAJOR_AILMENTS = {
+    AilmentEnum.BURN,
+    AilmentEnum.FREEZE,
+    AilmentEnum.PARALYSIS,
+    AilmentEnum.POISON,
+    AilmentEnum.SLEEP,
+}
 
 
 class CategoryEnum(Enum):

@@ -2,7 +2,7 @@ import random
 from dataclasses import dataclass
 from enum import Enum
 
-from core.entities.moves import AilmentEnum
+from core.entities.moves import MAJOR_AILMENTS, AilmentEnum
 from core.entities.pokemon import Pokemon, PokemonMove, PokemonStats, StatEnum
 from core.exceptions import IllegalBattleMoveError
 
@@ -20,18 +20,23 @@ class BattlePokemon:
         pokemon: Pokemon,
         *,
         current_hp: int | None = None,
-        current_ailment: list[AilmentEnum] = [],
+        current_ailments: list[AilmentEnum] = [],
         current_stats: PokemonStats | None = None,
         current_moves: tuple[BattlePokemonMove] | None = None,
     ) -> None:
         self.pokemon = pokemon
-        self.current_ailment = current_ailment or []
+        self.current_ailments = current_ailments or []
         self.current_hp = current_hp if (current_hp is not None and current_hp > 0) else pokemon.stats.hp
         self.current_stats = current_stats or pokemon.stats
         self.current_moves = current_moves or [
             BattlePokemonMove(move=move_metadata.move, current_pp=move_metadata.move.pp)
             for move_metadata in pokemon.moves_metadata
         ]
+
+    def get_current_major_ailment(self) -> AilmentEnum:
+        for ailment in self.current_ailments:
+            if ailment in MAJOR_AILMENTS:
+                return ailment
 
     def resolve_move_index(self, move_index: int) -> None:
         if not self._check_pokemon_move_index_valid(move_index):

@@ -74,14 +74,14 @@ class PokemonAilmentBadge(Widget):
         AilmentEnum.FREEZE: {"label": "FRE", "class": "freeze"},
     }
 
-    def __init__(self, *, ailment: AilmentEnum):
+    def __init__(self, *, ailment: AilmentEnum | None = None):
         self.ailment = ailment
         super().__init__()
 
     def compose(self) -> ComposeResult:
         yield Label(
-            self.AILMENT_STATUS_UI_MAP[self.ailment]["label"],
-            classes=f"badge {self.AILMENT_STATUS_UI_MAP[self.ailment]['class']}",
+            self.AILMENT_STATUS_UI_MAP[self.ailment]["label"] if self.ailment else "",
+            classes=f"badge {self.AILMENT_STATUS_UI_MAP[self.ailment]['class']}" if self.ailment else "",
         )
 
 
@@ -114,5 +114,5 @@ class PokemonBattleHUD(Widget):
     def compose(self) -> ComposeResult:
         with Container(classes="name-ailment-container"):
             yield Label(Text(self.battle_pokemon.pokemon.name), classes="name")
-            yield PokemonAilmentBadge(ailment=AilmentEnum.PARALYSIS)
+            yield PokemonAilmentBadge(ailment=self.battle_pokemon.get_current_major_ailment())
         yield PokemonBattleHealthBar(max_health=self.battle_pokemon.pokemon.stats.hp)
