@@ -5,9 +5,7 @@
 }
 
 .battle-pokemon-container {
-    height: 100%;
-    width: 100%;
-    content-align: center middle;
+    layout: vertical;
 }
 
 .battle-pokemon-container Label {
@@ -17,9 +15,15 @@
     content-align: center middle;
 }
 
+.battle-pokemon-container PokemonBattleHUD {
+    dock: bottom;
+    height: 6;
+    margin: 2 5;
+}
+
 .battle-prompt {
     width: 100%;
-    height: 7;
+    height: 8;
     padding: 1 3;
     border-top: heavy $secondary;
     border-bottom: heavy $secondary;
