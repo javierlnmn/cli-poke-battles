@@ -28,18 +28,18 @@ class BattlePokemon:
         self.current_ailments = current_ailments or []
         self.current_hp = current_hp if (current_hp is not None and current_hp > 0) else pokemon.stats.hp
         self.current_stats = current_stats or pokemon.stats
-        self.current_moves = (
-            current_moves
-            or [
-                BattlePokemonMove(move=move_metadata.move, current_pp=move_metadata.move.pp)
-                for move_metadata in pokemon.moves_metadata
-            ][:4]
-        )  # Implement coherent move choosing
+        self.current_moves = current_moves or self._select_initial_moves(pokemon)
 
     def get_current_major_ailment(self) -> AilmentEnum:
         for ailment in self.current_ailments:
             if ailment in MAJOR_AILMENTS:
                 return ailment
+
+    @staticmethod
+    def _select_initial_moves(pokemon: Pokemon) -> tuple[BattlePokemonMove, ...]:
+        from core.services import MoveSelector
+
+        return MoveSelector().select(pokemon)
 
     def resolve_move_index(self, move_index: int) -> None:
         if not self._check_pokemon_move_index_valid(move_index):

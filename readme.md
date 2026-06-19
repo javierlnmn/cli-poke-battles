@@ -15,7 +15,11 @@ cli-poke-battles/
 │   ├── entities/         # Domain dataclasses
 │   ├── repositories/     # Data access layer
 │   ├── schemas/          # TypedDict schemas (raw JSON shapes)
-│   ├── services/         # PokeAPI fetchers
+│   ├── services/         # PokeAPI fetchers and pure-logic utilities
+│   │   ├── moves_fetch.py
+│   │   ├── pokemon_fetch.py
+│   │   ├── types_fetch.py
+│   │   └── move_selector.py
 │   └── utils/            # File I/O helpers
 ├── tui/                  # Textual TUI
 │   ├── app.py
@@ -65,13 +69,13 @@ Or update a single resource:
 
 ```bash
 # Types (#1-16) -> core/assets/pokemon_types_data.json
-poetry run python -m core.services.types
+poetry run python -m core.services.types_fetch
 
 # Moves (Gen 1, #1-165) -> core/assets/pokemon_moves_data.json
-poetry run python -m core.services.moves
+poetry run python -m core.services.moves_fetch
 
 # Pokémon (Gen 1, #1-151) -> core/assets/pokemon_data.json + ascii sprites
-poetry run python -m core.services.pokemon
+poetry run python -m core.services.pokemon_fetch
 ```
 
 > [!NOTE]

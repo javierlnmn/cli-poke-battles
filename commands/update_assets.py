@@ -1,6 +1,6 @@
-from core.services.moves import MoveService
-from core.services.pokemon import PokemonService
-from core.services.types import TypeService
+from core.services.moves_fetch import MoveService
+from core.services.pokemon_fetch import PokemonService
+from core.services.types_fetch import TypeService
 
 
 def update_assets() -> None:
