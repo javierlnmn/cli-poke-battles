@@ -44,7 +44,6 @@ class CategoryEnum(Enum):
     NET_GOOD_STATS = "net-good-stats"
     HEAL = "heal"
     DAMAGE_AILMENT = "damage-ailment"
-    SWAGGER = "swagger"
     DAMAGE_LOWER = "damage-lower"
     DAMAGE_RAISE = "damage-raise"
     DAMAGE_HEAL = "damage-heal"
@@ -53,6 +52,7 @@ class CategoryEnum(Enum):
     # Not contemplated categories
     FORCE_SWITCH = "force-switch"
     UNIQUE = "unique"
+    SWAGGER = "swagger"
     FIELD_EFFECT = "field-effect"
     WHOLE_FIELD_EFFECT = "whole-field-effect"
 

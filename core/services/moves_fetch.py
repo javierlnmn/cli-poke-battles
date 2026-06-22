@@ -17,6 +17,7 @@ class MoveService:
         "unique",
         "whole-field-effect",
         "field-effect",
+        "swagger",
     }
 
     EXCLUDED_AILMENTS = {
