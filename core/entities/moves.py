@@ -23,8 +23,10 @@ class AilmentEnum(Enum):
     UNKNOWN = "unknown"
     CONFUSION = "confusion"
     DISABLE = "disable"
-    LEECH_SEED = "leech-seed"
     TRAP = "trap"
+
+    # Not contemplated ailments
+    LEECH_SEED = "leech-seed"
 
 
 MAJOR_AILMENTS = {
@@ -47,12 +49,12 @@ class CategoryEnum(Enum):
     DAMAGE_RAISE = "damage-raise"
     DAMAGE_HEAL = "damage-heal"
     OHKO = "ohko"
-    WHOLE_FIELD_EFFECT = "whole-field-effect"
-    FIELD_EFFECT = "field-effect"
 
     # Not contemplated categories
     FORCE_SWITCH = "force-switch"
     UNIQUE = "unique"
+    FIELD_EFFECT = "field-effect"
+    WHOLE_FIELD_EFFECT = "whole-field-effect"
 
 
 class TargetEnum(Enum):

@@ -335,6 +335,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u8fde\u73af\u5df4\u638c"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Doble Bofet\u00f3n"
             }
         ],
         "power": 15,
@@ -452,6 +459,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u8fde\u7eed\u62f3"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Pu\u00f1o Cometa"
             }
         ],
         "power": 18,
@@ -803,6 +817,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u706b\u7130\u62f3"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Pu\u00f1o Fuego"
             }
         ],
         "power": 75,
@@ -1981,6 +2002,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u7fc5\u8180\u653b\u51fb"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Ataque de Ala"
             }
         ],
         "power": 60,
@@ -2800,6 +2828,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u767e\u4e07\u5428\u91cd\u8e22"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Megapatada"
             }
         ],
         "power": 120,
@@ -2917,6 +2952,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u98de\u8e22"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Patada Salto"
             }
         ],
         "power": 100,
@@ -3627,6 +3669,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u89d2\u94bb"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Cuerno Taladro"
             }
         ],
         "power": null,
@@ -4571,6 +4620,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6bd2\u9488"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Piquete Venenoso"
             }
         ],
         "power": 15,
@@ -4922,6 +4978,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u77aa\u773c"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Malicioso"
             }
         ],
         "power": null,
@@ -5523,6 +5586,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6eb6\u89e3\u6db2"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "\u00c1cido"
             }
         ],
         "power": 40,
@@ -5780,123 +5850,6 @@
             "url": "https://pokeapi.co/api/v2/type/10/"
         }
     },
-    "mist": {
-        "accuracy": null,
-        "damage_class": {
-            "name": "status",
-            "url": "https://pokeapi.co/api/v2/move-damage-class/1/"
-        },
-        "generation": {
-            "name": "generation-i",
-            "url": "https://pokeapi.co/api/v2/generation/1/"
-        },
-        "id": 54,
-        "meta": {
-            "ailment": {
-                "name": "none",
-                "url": "https://pokeapi.co/api/v2/move-ailment/0/"
-            },
-            "ailment_chance": 0,
-            "category": {
-                "name": "field-effect",
-                "url": "https://pokeapi.co/api/v2/move-category/11/"
-            },
-            "crit_rate": 0,
-            "drain": 0,
-            "flinch_chance": 0,
-            "healing": 0,
-            "max_hits": null,
-            "max_turns": null,
-            "min_hits": null,
-            "min_turns": null,
-            "stat_chance": 0
-        },
-        "name": "mist",
-        "names": [
-            {
-                "language": {
-                    "name": "ja-hrkt",
-                    "url": "https://pokeapi.co/api/v2/language/1/"
-                },
-                "name": "\u3057\u308d\u3044\u304d\u308a"
-            },
-            {
-                "language": {
-                    "name": "ko",
-                    "url": "https://pokeapi.co/api/v2/language/3/"
-                },
-                "name": "\ud770\uc548\uac1c"
-            },
-            {
-                "language": {
-                    "name": "zh-hant",
-                    "url": "https://pokeapi.co/api/v2/language/4/"
-                },
-                "name": "\u767d\u9727"
-            },
-            {
-                "language": {
-                    "name": "fr",
-                    "url": "https://pokeapi.co/api/v2/language/5/"
-                },
-                "name": "Brume"
-            },
-            {
-                "language": {
-                    "name": "de",
-                    "url": "https://pokeapi.co/api/v2/language/6/"
-                },
-                "name": "Wei\u00dfnebel"
-            },
-            {
-                "language": {
-                    "name": "es",
-                    "url": "https://pokeapi.co/api/v2/language/7/"
-                },
-                "name": "Neblina"
-            },
-            {
-                "language": {
-                    "name": "it",
-                    "url": "https://pokeapi.co/api/v2/language/8/"
-                },
-                "name": "Nebbia"
-            },
-            {
-                "language": {
-                    "name": "en",
-                    "url": "https://pokeapi.co/api/v2/language/9/"
-                },
-                "name": "Mist"
-            },
-            {
-                "language": {
-                    "name": "ja",
-                    "url": "https://pokeapi.co/api/v2/language/11/"
-                },
-                "name": "\u3057\u308d\u3044\u304d\u308a"
-            },
-            {
-                "language": {
-                    "name": "zh-hans",
-                    "url": "https://pokeapi.co/api/v2/language/12/"
-                },
-                "name": "\u767d\u96fe"
-            }
-        ],
-        "power": null,
-        "pp": 30,
-        "priority": 0,
-        "stat_changes": [],
-        "target": {
-            "name": "users-field",
-            "url": "https://pokeapi.co/api/v2/move-target/4/"
-        },
-        "type": {
-            "name": "ice",
-            "url": "https://pokeapi.co/api/v2/type/15/"
-        }
-    },
     "water-gun": {
         "accuracy": 100,
         "damage_class": {
@@ -5999,6 +5952,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6c34\u67aa"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Chorro de Agua"
             }
         ],
         "power": 40,
@@ -6584,6 +6544,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5e7b\u8c61\u5149\u7ebf"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Psicorrayo"
             }
         ],
         "power": 65,
@@ -7653,6 +7620,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5730\u7403\u4e0a\u6295"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "S\u00edsmico"
             }
         ],
         "power": null,
@@ -7887,6 +7861,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5438\u53d6"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Absorci\u00f3n"
             }
         ],
         "power": 20,
@@ -8008,123 +7989,6 @@
         ],
         "power": 40,
         "pp": 15,
-        "priority": 0,
-        "stat_changes": [],
-        "target": {
-            "name": "selected-pokemon",
-            "url": "https://pokeapi.co/api/v2/move-target/10/"
-        },
-        "type": {
-            "name": "grass",
-            "url": "https://pokeapi.co/api/v2/type/12/"
-        }
-    },
-    "leech-seed": {
-        "accuracy": 90,
-        "damage_class": {
-            "name": "status",
-            "url": "https://pokeapi.co/api/v2/move-damage-class/1/"
-        },
-        "generation": {
-            "name": "generation-i",
-            "url": "https://pokeapi.co/api/v2/generation/1/"
-        },
-        "id": 73,
-        "meta": {
-            "ailment": {
-                "name": "leech-seed",
-                "url": "https://pokeapi.co/api/v2/move-ailment/18/"
-            },
-            "ailment_chance": 0,
-            "category": {
-                "name": "ailment",
-                "url": "https://pokeapi.co/api/v2/move-category/1/"
-            },
-            "crit_rate": 0,
-            "drain": 0,
-            "flinch_chance": 0,
-            "healing": 0,
-            "max_hits": null,
-            "max_turns": null,
-            "min_hits": null,
-            "min_turns": null,
-            "stat_chance": 0
-        },
-        "name": "leech-seed",
-        "names": [
-            {
-                "language": {
-                    "name": "ja-hrkt",
-                    "url": "https://pokeapi.co/api/v2/language/1/"
-                },
-                "name": "\u3084\u3069\u308a\u304e\u306e\u30bf\u30cd"
-            },
-            {
-                "language": {
-                    "name": "ko",
-                    "url": "https://pokeapi.co/api/v2/language/3/"
-                },
-                "name": "\uc528\ubfcc\ub9ac\uae30"
-            },
-            {
-                "language": {
-                    "name": "zh-hant",
-                    "url": "https://pokeapi.co/api/v2/language/4/"
-                },
-                "name": "\u5bc4\u751f\u7a2e\u5b50"
-            },
-            {
-                "language": {
-                    "name": "fr",
-                    "url": "https://pokeapi.co/api/v2/language/5/"
-                },
-                "name": "Vampigraine"
-            },
-            {
-                "language": {
-                    "name": "de",
-                    "url": "https://pokeapi.co/api/v2/language/6/"
-                },
-                "name": "Egelsamen"
-            },
-            {
-                "language": {
-                    "name": "es",
-                    "url": "https://pokeapi.co/api/v2/language/7/"
-                },
-                "name": "Drenadoras"
-            },
-            {
-                "language": {
-                    "name": "it",
-                    "url": "https://pokeapi.co/api/v2/language/8/"
-                },
-                "name": "Parassiseme"
-            },
-            {
-                "language": {
-                    "name": "en",
-                    "url": "https://pokeapi.co/api/v2/language/9/"
-                },
-                "name": "Leech Seed"
-            },
-            {
-                "language": {
-                    "name": "ja",
-                    "url": "https://pokeapi.co/api/v2/language/11/"
-                },
-                "name": "\u3084\u3069\u308a\u304e\u306e\u30bf\u30cd"
-            },
-            {
-                "language": {
-                    "name": "zh-hans",
-                    "url": "https://pokeapi.co/api/v2/language/12/"
-                },
-                "name": "\u5bc4\u751f\u79cd\u5b50"
-            }
-        ],
-        "power": null,
-        "pp": 10,
         "priority": 0,
         "stat_changes": [],
         "target": {
@@ -8955,6 +8819,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u82b1\u74e3\u821e"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Danza de P\u00e9talos"
             }
         ],
         "power": 120,
@@ -9431,6 +9302,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u7535\u51fb"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Impactrueno"
             }
         ],
         "power": 40,
@@ -9665,6 +9543,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u7535\u78c1\u6ce2"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Onda Trueno"
             }
         ],
         "power": null,
@@ -11210,6 +11095,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6124\u6012"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Furia"
             }
         ],
         "power": 20,
@@ -11327,6 +11219,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u9ed1\u591c\u9b54\u5f71"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Tinieblas"
             }
         ],
         "power": null,
@@ -11444,6 +11343,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u523a\u8033\u58f0"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Chillido"
             }
         ],
         "power": null,
@@ -11569,6 +11475,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5f71\u5b50\u5206\u8eab"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Doble Equipo"
             }
         ],
         "power": null,
@@ -11694,6 +11607,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u81ea\u6211\u518d\u751f"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Recuperaci\u00f3n"
             }
         ],
         "power": null,
@@ -11811,6 +11731,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u53d8\u786c"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Fortaleza"
             }
         ],
         "power": null,
@@ -12428,6 +12355,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u53d8\u5706"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Hacerse Bolita"
             }
         ],
         "power": null,
@@ -12553,6 +12487,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5c4f\u969c"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Barrera"
             }
         ],
         "power": null,
@@ -12570,357 +12511,6 @@
         "target": {
             "name": "user",
             "url": "https://pokeapi.co/api/v2/move-target/7/"
-        },
-        "type": {
-            "name": "psychic",
-            "url": "https://pokeapi.co/api/v2/type/14/"
-        }
-    },
-    "light-screen": {
-        "accuracy": null,
-        "damage_class": {
-            "name": "status",
-            "url": "https://pokeapi.co/api/v2/move-damage-class/1/"
-        },
-        "generation": {
-            "name": "generation-i",
-            "url": "https://pokeapi.co/api/v2/generation/1/"
-        },
-        "id": 113,
-        "meta": {
-            "ailment": {
-                "name": "none",
-                "url": "https://pokeapi.co/api/v2/move-ailment/0/"
-            },
-            "ailment_chance": 0,
-            "category": {
-                "name": "field-effect",
-                "url": "https://pokeapi.co/api/v2/move-category/11/"
-            },
-            "crit_rate": 0,
-            "drain": 0,
-            "flinch_chance": 0,
-            "healing": 0,
-            "max_hits": null,
-            "max_turns": null,
-            "min_hits": null,
-            "min_turns": null,
-            "stat_chance": 0
-        },
-        "name": "light-screen",
-        "names": [
-            {
-                "language": {
-                    "name": "ja-hrkt",
-                    "url": "https://pokeapi.co/api/v2/language/1/"
-                },
-                "name": "\u3072\u304b\u308a\u306e\u304b\u3079"
-            },
-            {
-                "language": {
-                    "name": "ko",
-                    "url": "https://pokeapi.co/api/v2/language/3/"
-                },
-                "name": "\ube5b\uc758\uc7a5\ub9c9"
-            },
-            {
-                "language": {
-                    "name": "zh-hant",
-                    "url": "https://pokeapi.co/api/v2/language/4/"
-                },
-                "name": "\u5149\u7246"
-            },
-            {
-                "language": {
-                    "name": "fr",
-                    "url": "https://pokeapi.co/api/v2/language/5/"
-                },
-                "name": "Mur Lumi\u00e8re"
-            },
-            {
-                "language": {
-                    "name": "de",
-                    "url": "https://pokeapi.co/api/v2/language/6/"
-                },
-                "name": "Lichtschild"
-            },
-            {
-                "language": {
-                    "name": "es",
-                    "url": "https://pokeapi.co/api/v2/language/7/"
-                },
-                "name": "Pantalla de Luz"
-            },
-            {
-                "language": {
-                    "name": "it",
-                    "url": "https://pokeapi.co/api/v2/language/8/"
-                },
-                "name": "Schermoluce"
-            },
-            {
-                "language": {
-                    "name": "en",
-                    "url": "https://pokeapi.co/api/v2/language/9/"
-                },
-                "name": "Light Screen"
-            },
-            {
-                "language": {
-                    "name": "ja",
-                    "url": "https://pokeapi.co/api/v2/language/11/"
-                },
-                "name": "\u3072\u304b\u308a\u306e\u304b\u3079"
-            },
-            {
-                "language": {
-                    "name": "zh-hans",
-                    "url": "https://pokeapi.co/api/v2/language/12/"
-                },
-                "name": "\u5149\u5899"
-            }
-        ],
-        "power": null,
-        "pp": 30,
-        "priority": 0,
-        "stat_changes": [],
-        "target": {
-            "name": "users-field",
-            "url": "https://pokeapi.co/api/v2/move-target/4/"
-        },
-        "type": {
-            "name": "psychic",
-            "url": "https://pokeapi.co/api/v2/type/14/"
-        }
-    },
-    "haze": {
-        "accuracy": null,
-        "damage_class": {
-            "name": "status",
-            "url": "https://pokeapi.co/api/v2/move-damage-class/1/"
-        },
-        "generation": {
-            "name": "generation-i",
-            "url": "https://pokeapi.co/api/v2/generation/1/"
-        },
-        "id": 114,
-        "meta": {
-            "ailment": {
-                "name": "none",
-                "url": "https://pokeapi.co/api/v2/move-ailment/0/"
-            },
-            "ailment_chance": 0,
-            "category": {
-                "name": "whole-field-effect",
-                "url": "https://pokeapi.co/api/v2/move-category/10/"
-            },
-            "crit_rate": 0,
-            "drain": 0,
-            "flinch_chance": 0,
-            "healing": 0,
-            "max_hits": null,
-            "max_turns": null,
-            "min_hits": null,
-            "min_turns": null,
-            "stat_chance": 0
-        },
-        "name": "haze",
-        "names": [
-            {
-                "language": {
-                    "name": "ja-hrkt",
-                    "url": "https://pokeapi.co/api/v2/language/1/"
-                },
-                "name": "\u304f\u308d\u3044\u304d\u308a"
-            },
-            {
-                "language": {
-                    "name": "ko",
-                    "url": "https://pokeapi.co/api/v2/language/3/"
-                },
-                "name": "\ud751\uc548\uac1c"
-            },
-            {
-                "language": {
-                    "name": "zh-hant",
-                    "url": "https://pokeapi.co/api/v2/language/4/"
-                },
-                "name": "\u9ed1\u9727"
-            },
-            {
-                "language": {
-                    "name": "fr",
-                    "url": "https://pokeapi.co/api/v2/language/5/"
-                },
-                "name": "Bu\u00e9e Noire"
-            },
-            {
-                "language": {
-                    "name": "de",
-                    "url": "https://pokeapi.co/api/v2/language/6/"
-                },
-                "name": "Dunkelnebel"
-            },
-            {
-                "language": {
-                    "name": "es",
-                    "url": "https://pokeapi.co/api/v2/language/7/"
-                },
-                "name": "Niebla"
-            },
-            {
-                "language": {
-                    "name": "it",
-                    "url": "https://pokeapi.co/api/v2/language/8/"
-                },
-                "name": "Nube"
-            },
-            {
-                "language": {
-                    "name": "en",
-                    "url": "https://pokeapi.co/api/v2/language/9/"
-                },
-                "name": "Haze"
-            },
-            {
-                "language": {
-                    "name": "ja",
-                    "url": "https://pokeapi.co/api/v2/language/11/"
-                },
-                "name": "\u304f\u308d\u3044\u304d\u308a"
-            },
-            {
-                "language": {
-                    "name": "zh-hans",
-                    "url": "https://pokeapi.co/api/v2/language/12/"
-                },
-                "name": "\u9ed1\u96fe"
-            }
-        ],
-        "power": null,
-        "pp": 30,
-        "priority": 0,
-        "stat_changes": [],
-        "target": {
-            "name": "entire-field",
-            "url": "https://pokeapi.co/api/v2/move-target/12/"
-        },
-        "type": {
-            "name": "ice",
-            "url": "https://pokeapi.co/api/v2/type/15/"
-        }
-    },
-    "reflect": {
-        "accuracy": null,
-        "damage_class": {
-            "name": "status",
-            "url": "https://pokeapi.co/api/v2/move-damage-class/1/"
-        },
-        "generation": {
-            "name": "generation-i",
-            "url": "https://pokeapi.co/api/v2/generation/1/"
-        },
-        "id": 115,
-        "meta": {
-            "ailment": {
-                "name": "none",
-                "url": "https://pokeapi.co/api/v2/move-ailment/0/"
-            },
-            "ailment_chance": 0,
-            "category": {
-                "name": "field-effect",
-                "url": "https://pokeapi.co/api/v2/move-category/11/"
-            },
-            "crit_rate": 0,
-            "drain": 0,
-            "flinch_chance": 0,
-            "healing": 0,
-            "max_hits": null,
-            "max_turns": null,
-            "min_hits": null,
-            "min_turns": null,
-            "stat_chance": 0
-        },
-        "name": "reflect",
-        "names": [
-            {
-                "language": {
-                    "name": "ja-hrkt",
-                    "url": "https://pokeapi.co/api/v2/language/1/"
-                },
-                "name": "\u30ea\u30d5\u30ec\u30af\u30bf\u30fc"
-            },
-            {
-                "language": {
-                    "name": "ko",
-                    "url": "https://pokeapi.co/api/v2/language/3/"
-                },
-                "name": "\ub9ac\ud50c\ub809\ud130"
-            },
-            {
-                "language": {
-                    "name": "zh-hant",
-                    "url": "https://pokeapi.co/api/v2/language/4/"
-                },
-                "name": "\u53cd\u5c04\u58c1"
-            },
-            {
-                "language": {
-                    "name": "fr",
-                    "url": "https://pokeapi.co/api/v2/language/5/"
-                },
-                "name": "Protection"
-            },
-            {
-                "language": {
-                    "name": "de",
-                    "url": "https://pokeapi.co/api/v2/language/6/"
-                },
-                "name": "Reflektor"
-            },
-            {
-                "language": {
-                    "name": "es",
-                    "url": "https://pokeapi.co/api/v2/language/7/"
-                },
-                "name": "Reflejo"
-            },
-            {
-                "language": {
-                    "name": "it",
-                    "url": "https://pokeapi.co/api/v2/language/8/"
-                },
-                "name": "Riflesso"
-            },
-            {
-                "language": {
-                    "name": "en",
-                    "url": "https://pokeapi.co/api/v2/language/9/"
-                },
-                "name": "Reflect"
-            },
-            {
-                "language": {
-                    "name": "ja",
-                    "url": "https://pokeapi.co/api/v2/language/11/"
-                },
-                "name": "\u30ea\u30d5\u30ec\u30af\u30bf\u30fc"
-            },
-            {
-                "language": {
-                    "name": "zh-hans",
-                    "url": "https://pokeapi.co/api/v2/language/12/"
-                },
-                "name": "\u53cd\u5c04\u58c1"
-            }
-        ],
-        "power": null,
-        "pp": 20,
-        "priority": 0,
-        "stat_changes": [],
-        "target": {
-            "name": "users-field",
-            "url": "https://pokeapi.co/api/v2/move-target/4/"
         },
         "type": {
             "name": "psychic",
@@ -13146,6 +12736,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u81ea\u7206"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Autodestrucci\u00f3n"
             }
         ],
         "power": 200,
@@ -13965,6 +13562,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6500\u7011"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Cascada"
             }
         ],
         "power": 80,
@@ -14550,6 +14154,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u7f20\u7ed5"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Restricci\u00f3n"
             }
         ],
         "power": 10,
@@ -15276,6 +14887,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u98df\u68a6"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Comesue\u00f1os"
             }
         ],
         "power": 100,
@@ -15510,6 +15128,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u6295\u7403"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Bombardeo"
             }
         ],
         "power": 15,
@@ -16704,6 +16329,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u87f9\u94b3\u9524"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Martillazo"
             }
         ],
         "power": 100,
@@ -16821,6 +16453,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5927\u7206\u70b8"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Explosi\u00f3n"
             }
         ],
         "power": 250,
@@ -17172,6 +16811,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u5ca9\u5d29"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Avalancha"
             }
         ],
         "power": 75,
@@ -17531,6 +17177,13 @@
                     "url": "https://pokeapi.co/api/v2/language/12/"
                 },
                 "name": "\u4e09\u91cd\u653b\u51fb"
+            },
+            {
+                "language": {
+                    "name": "es-419",
+                    "url": "https://pokeapi.co/api/v2/language/14/"
+                },
+                "name": "Triataque"
             }
         ],
         "power": 80,

@@ -12,7 +12,16 @@ from core.utils.files import write_file_data
 class MoveService:
     FIRST_GEN_MOVE_COUNT = 165
 
-    EXCLUDED_CATEGORIES = {"force-switch", "unique"}
+    EXCLUDED_CATEGORIES = {
+        "force-switch",
+        "unique",
+        "whole-field-effect",
+        "field-effect",
+    }
+
+    EXCLUDED_AILMENTS = {
+        "leech-seed",
+    }
 
     MOVE_FIELDS = [
         "accuracy",
@@ -43,6 +52,11 @@ class MoveService:
             category = raw["meta"]["category"]["name"]
             if category in self.EXCLUDED_CATEGORIES:
                 print(f"[{ref:3}] skip ({category}): {raw['name']}")
+                continue
+
+            ailment = raw["meta"]["ailment"]["name"]
+            if ailment in self.EXCLUDED_AILMENTS:
+                print(f"[{ref:3}] skip (ailment {ailment}): {raw['name']}")
                 continue
 
             move_type = raw["type"]["name"]
