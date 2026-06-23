@@ -1,5 +1,5 @@
-from core.entities.battle import (
-    Battle,
+from core.entities.battle.battle import Battle, PokemonOrderSlot, TurnResult
+from core.entities.battle.events import (
     BattleEvent,
     BattleEventAilment,
     BattleEventDamage,
@@ -10,20 +10,15 @@ from core.entities.battle import (
     BattleEventMoveUsed,
     BattleEventNotAffected,
     BattleEventStatChange,
+)
+from core.entities.battle.handlers import (
     BattleMoveHandler,
     BattleMoveHandlerResolver,
-    BattlePokemon,
-    BattlePokemonMove,
     GenericBattleMoveHandler,
-    PokemonOrderSlot,
-    TurnResult,
 )
-from core.entities.moves import AilmentEnum, DamageClassEnum, PokemonMove
-from core.entities.pokemon import Pokemon, PokemonMoveMetadata, PokemonStats
-from core.entities.types import PokemonType
+from core.entities.battle.state import BattlePokemon, BattlePokemonMove
 
 __all__ = [
-    "AilmentEnum",
     "Battle",
     "BattleEvent",
     "BattleEventAilment",
@@ -39,13 +34,7 @@ __all__ = [
     "BattleMoveHandlerResolver",
     "BattlePokemon",
     "BattlePokemonMove",
-    "DamageClassEnum",
     "GenericBattleMoveHandler",
-    "Pokemon",
-    "PokemonMove",
-    "PokemonMoveMetadata",
     "PokemonOrderSlot",
-    "PokemonStats",
-    "PokemonType",
     "TurnResult",
 ]
