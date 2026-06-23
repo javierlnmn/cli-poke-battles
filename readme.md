@@ -16,10 +16,6 @@ cli-poke-battles/
 │   ├── repositories/     # Data access layer
 │   ├── schemas/          # TypedDict schemas (raw JSON shapes)
 │   ├── services/         # PokeAPI fetchers and pure-logic utilities
-│   │   ├── moves_fetch.py
-│   │   ├── pokemon_fetch.py
-│   │   ├── types_fetch.py
-│   │   └── move_selector.py
 │   └── utils/            # File I/O helpers
 ├── tui/                  # Textual TUI
 │   ├── app.py
