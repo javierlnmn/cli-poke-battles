@@ -18,7 +18,7 @@ class BattleEventKindEnum(Enum):
 
 @dataclass(frozen=True)
 class BattleEventMoveUsed:
-    move: BattlePokemonMove
+    battle_move: BattlePokemonMove
 
 
 @dataclass(frozen=True)
@@ -28,7 +28,7 @@ class BattleEventDamage:
 
 @dataclass(frozen=True)
 class BattleEventNotAffected:
-    pokemon: BattlePokemon
+    battle_pokemon: BattlePokemon
 
 
 @dataclass(frozen=True)
@@ -38,7 +38,7 @@ class BattleEventMissed:
 
 @dataclass(frozen=True)
 class BattleEventFainted:
-    pokemon: BattlePokemon
+    battle_pokemon: BattlePokemon
 
 
 @dataclass(frozen=True)
@@ -68,5 +68,5 @@ class BattleEvent:
     kind: BattleEventKindEnum
     actor: BattlePokemon
     payload: BattleEventKind
-    text_detail: str
+    text_detail: str | None = None
     target: BattlePokemon | None = None

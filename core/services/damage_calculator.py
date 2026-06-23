@@ -1,16 +1,18 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from random import randrange
-from typing import Protocol
 
 from core.entities import BattlePokemon, BattlePokemonMove, DamageClassEnum, PokemonType
 from core.exceptions import StatusMoveDamageError, UnsupportedDamageClassError
 
 
-class DamageCalculator(Protocol):
+@dataclass
+class DamageCalculator(ABC):
     battle_move: BattlePokemonMove
     attacker: BattlePokemon
     target: BattlePokemon
 
+    @abstractmethod
     def calculate_damage(self) -> int: ...
 
 

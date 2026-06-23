@@ -18,7 +18,7 @@ from core.entities.battle import (
     PokemonOrderSlot,
     TurnResult,
 )
-from core.entities.moves import AilmentEnum, DamageClassEnum, PokemonMove
+from core.entities.moves import AilmentEnum, CategoryEnum, DamageClassEnum, PokemonMove
 from core.entities.pokemon import Pokemon, PokemonMoveMetadata, PokemonStats
 from core.entities.types import PokemonType
 
@@ -39,6 +39,7 @@ __all__ = [
     "BattleMoveHandlerResolver",
     "BattlePokemon",
     "BattlePokemonMove",
+    "CategoryEnum",
     "DamageClassEnum",
     "GenericBattleMoveHandler",
     "Pokemon",

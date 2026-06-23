@@ -2,7 +2,7 @@ import random
 from dataclasses import dataclass, field
 from enum import Enum
 
-from core.entities.battle.events import BattleEvent
+from core.entities.battle.events import BattleEvent, BattleEventMoveUsed
 from core.entities.battle.handlers import BattleMoveHandler, BattleMoveHandlerResolver
 from core.entities.battle.state import BattlePokemon, BattlePokemonMove
 from core.entities.pokemon import PokemonMove
@@ -56,6 +56,14 @@ class Battle:
                 if slot == PokemonOrderSlot.POKEMON_1_SLOT
                 else PokemonOrderSlot.POKEMON_1_SLOT
             )[0]
+
+            move_used_event = BattleEvent(
+                kind=BattleEventMoveUsed,
+                actor=attacker,
+                text_detail=f"{attacker.pokemon.name} used {attacker_move.move.name}!",
+                payload=BattleEventMoveUsed(battle_move=attacker_move),
+            )
+            battle_events.append(move_used_event)
 
             move_handler_class: BattleMoveHandler = BattleMoveHandlerResolver(
                 battle_move=attacker_move
