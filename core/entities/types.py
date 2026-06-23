@@ -21,7 +21,7 @@ class PokemonType:
     no_damage_from: list[str]
     no_damage_to: list[str]
 
-    def get_attacking_multiplier(self, recieving_type: "PokemonType") -> int:
+    def get_attacking_multiplier(self, *, recieving_type: "PokemonType") -> int:
         return self._get_multiplier_for(
             recieving_type.key,
             none_list=self.no_damage_to,
@@ -29,7 +29,7 @@ class PokemonType:
             double_list=self.double_damage_to,
         )
 
-    def get_recieving_multiplier(self, attacking_type: "PokemonType") -> int:
+    def get_recieving_multiplier(self, *, attacking_type: "PokemonType") -> int:
         return self._get_multiplier_for(
             attacking_type.key,
             none_list=self.no_damage_from,
