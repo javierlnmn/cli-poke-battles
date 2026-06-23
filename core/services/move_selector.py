@@ -48,7 +48,12 @@ class MoveSelector:
         top_score = scored[0].score
         tier = [s for s in scored if s.score >= top_score * self.TIER_RATIO]
 
-        chosen = self._weighted_sample_without_replacement(tier, min(self.SLOT_COUNT, len(tier)))
+        slot_count = min(self.SLOT_COUNT, len(moves))
+        chosen = self._weighted_sample_without_replacement(tier, min(slot_count, len(tier)))
+
+        if len(chosen) < slot_count:
+            remaining = [s for s in scored if s not in chosen]
+            chosen.extend(self._weighted_sample_without_replacement(remaining, slot_count - len(chosen)))
 
         return tuple(
             BattlePokemonMove(move=s.metadata.move, current_pp=s.metadata.move.pp or 0) for s in chosen
