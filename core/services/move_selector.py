@@ -1,7 +1,7 @@
 import random
 from dataclasses import dataclass
 
-from core.entities.battle import BattlePokemonMove
+from core.entities.battle.move import BattlePokemonMove
 from core.entities.moves import DamageClassEnum
 from core.entities.pokemon import Pokemon, PokemonMoveMetadata
 

@@ -1,7 +1,7 @@
 from typing import ClassVar
 
 from core.config import POKEMON_TYPES_FILE_PATH
-from core.entities import PokemonType
+from core.entities.types import PokemonType
 from core.exceptions import ResourceNotFoundError
 from core.schemas import NamedResourceJson, TypeJson
 from core.utils.files import read_file_data_json

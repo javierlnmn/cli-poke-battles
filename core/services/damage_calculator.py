@@ -2,7 +2,10 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from random import randrange
 
-from core.entities import BattlePokemon, BattlePokemonMove, DamageClassEnum, PokemonType
+from core.entities.battle.move import BattlePokemonMove
+from core.entities.battle.pokemon import BattlePokemon
+from core.entities.moves import DamageClassEnum
+from core.entities.types import PokemonType
 from core.exceptions import StatusMoveDamageError, UnsupportedDamageClassError
 
 
