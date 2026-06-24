@@ -1,19 +1,9 @@
 from dataclasses import dataclass
-from enum import Enum
 
-from core.entities.battle.state import BattlePokemon, BattlePokemonMove
+from core.entities.battle.move import BattlePokemonMove
+from core.entities.battle.pokemon import BattlePokemon
 from core.entities.moves import AilmentEnum
 from core.entities.pokemon import StatEnum
-
-
-class BattleEventKindEnum(Enum):
-    MOVE_USED = "move_used"
-    DAMAGE = "damage"
-    NOT_AFFECTED = "not_affected"
-    MISSED = "missed"
-    FAINTED = "fainted"
-    STAT_CHANGE = "stat_change"
-    AILMENT = "ailment"
 
 
 @dataclass(frozen=True)
@@ -65,7 +55,7 @@ BattleEventKind = (
 
 @dataclass(frozen=True)
 class BattleEvent:
-    kind: BattleEventKindEnum
+    kind: type[BattleEventKind]
     actor: BattlePokemon
     payload: BattleEventKind
     text_detail: str | None = None

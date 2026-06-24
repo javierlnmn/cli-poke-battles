@@ -1,15 +1,7 @@
-from dataclasses import dataclass
-
-from core.entities.moves import MAJOR_AILMENTS, AilmentEnum, PokemonMove
+from core.entities.battle.move import BattlePokemonMove
+from core.entities.moves import MAJOR_AILMENTS, AilmentEnum
 from core.entities.pokemon import Pokemon, PokemonStats
 from core.exceptions import IllegalBattleMoveError
-
-
-@dataclass
-class BattlePokemonMove:
-    move: PokemonMove
-    current_pp: int
-    enabled: bool = True
 
 
 class BattlePokemon:
@@ -37,7 +29,7 @@ class BattlePokemon:
 
     @staticmethod
     def _select_initial_moves(pokemon: Pokemon) -> tuple[BattlePokemonMove, ...]:
-        from core.services import MoveSelector
+        from core.services.move_selector import MoveSelector
 
         return MoveSelector().select(pokemon)
 

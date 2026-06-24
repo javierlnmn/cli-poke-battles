@@ -2,9 +2,10 @@ import random
 from dataclasses import dataclass, field
 from enum import Enum
 
-from core.entities.battle.events import BattleEvent, BattleEventMoveUsed
-from core.entities.battle.handlers import BattleMoveHandler, BattleMoveHandlerResolver
-from core.entities.battle.state import BattlePokemon, BattlePokemonMove
+from core.entities.battle.move import BattlePokemonMove
+from core.entities.battle.move_handlers import BattleMoveHandler, BattleMoveHandlerResolver
+from core.entities.battle.pokemon import BattlePokemon
+from core.entities.battle.state_manager import BattleStateManager
 from core.entities.pokemon import PokemonMove
 
 
@@ -13,18 +14,12 @@ class PokemonOrderSlot(Enum):
     POKEMON_2_SLOT = 1
 
 
-@dataclass(frozen=True)
-class TurnResult:
-    events: list[BattleEvent]
-    winner: BattlePokemon | None
-
-
 @dataclass
 class Battle:
     battle_pokemon1: BattlePokemon
     battle_pokemon2: BattlePokemon
 
-    turns_history: list[TurnResult] = field(default_factory=list)
+    battle_state_manager: BattleStateManager = field(default_factory=BattleStateManager)
     winner: None | BattlePokemon = None
 
     # As for now, only battle moves will be accepted in play turn. Consider accepting
@@ -33,7 +28,7 @@ class Battle:
         self,
         battle_pokemon1_move_index: int,
         battle_pokemon2_move_index: int,
-    ) -> TurnResult:
+    ):
         pokemon1_battle_move = self.battle_pokemon1.resolve_move_index(battle_pokemon1_move_index)
         pokemon2_battle_move = self.battle_pokemon2.resolve_move_index(battle_pokemon2_move_index)
 
@@ -42,8 +37,6 @@ class Battle:
             pokemon2_battle_move.move,
         )
 
-        battle_events: list[BattleEvent] = []
-
         pokemon_move_pairs: dict[PokemonOrderSlot, tuple[BattlePokemon, BattlePokemonMove]] = {
             PokemonOrderSlot.POKEMON_1_SLOT: (self.battle_pokemon1, pokemon1_battle_move),
             PokemonOrderSlot.POKEMON_2_SLOT: (self.battle_pokemon2, pokemon2_battle_move),
@@ -51,29 +44,25 @@ class Battle:
 
         for slot in attacking_order_slots:
             attacker, attacker_move = pokemon_move_pairs[slot]
-            target = (
+            target_slot = (
                 PokemonOrderSlot.POKEMON_2_SLOT
                 if slot == PokemonOrderSlot.POKEMON_1_SLOT
                 else PokemonOrderSlot.POKEMON_1_SLOT
-            )[0]
-
-            move_used_event = BattleEvent(
-                kind=BattleEventMoveUsed,
-                actor=attacker,
-                text_detail=f"{attacker.pokemon.name} used {attacker_move.move.name}!",
-                payload=BattleEventMoveUsed(battle_move=attacker_move),
             )
-            battle_events.append(move_used_event)
+            target, _ = pokemon_move_pairs[target_slot]
 
-            move_handler_class: BattleMoveHandler = BattleMoveHandlerResolver(
+            self.battle_state_manager.register_used_move(attacker_move, attacker)
+
+            MoveHandler: type[BattleMoveHandler] = BattleMoveHandlerResolver(
                 battle_move=attacker_move
             ).resolve_handler()
 
-            battle_events.append(
-                *move_handler_class(
-                    battle_move=attacker_move, attacker=attacker, target=target
-                ).handle_battle_move()
-            )
+            MoveHandler(
+                battle_state_manager=self.battle_state_manager,
+                battle_move=attacker_move,
+                attacker=attacker,
+                target=target,
+            ).handle_battle_move()
 
     def get_pokemon_attacking_order(
         self,
