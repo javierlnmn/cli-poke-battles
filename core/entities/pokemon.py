@@ -9,8 +9,8 @@ class StatEnum(Enum):
     HP = "hp"
     ATTACK = "attack"
     DEFENSE = "defense"
-    SP_ATTACK = "sp_attack"
-    SP_DEFENSE = "sp_defense"
+    SP_ATTACK = "special-attack"
+    SP_DEFENSE = "special-defense"
     SPEED = "speed"
 
 
@@ -22,6 +22,15 @@ class PokemonStats:
     sp_attack: int
     sp_defense: int
     speed: int
+
+    _STAT_ENUM_FIELD_OVERRIDES = {
+        StatEnum.SP_ATTACK: "sp_attack",
+        StatEnum.SP_DEFENSE: "sp_defense",
+    }
+
+    def get_stat(self, stat: StatEnum) -> int:
+        field = self._STAT_ENUM_FIELD_OVERRIDES.get(stat, stat.value)
+        return getattr(self, field)
 
 
 @dataclass(frozen=True)
