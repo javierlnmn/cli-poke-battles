@@ -24,3 +24,15 @@ class UnsupportedDamageClassError(Exception):
     def __init__(self, damage_class: str) -> None:
         super().__init__(f"Damage class '{damage_class}' is not supported by this calculator.")
         self.damage_class = damage_class
+
+
+class MajorAilmentAlreadyActiveError(Exception):
+    """Raised when trying to apply a major ailment to a Pokémon that already has one.
+
+    Major ailments (burn, freeze, paralysis, poison, sleep) are mutually exclusive.
+    The caller is responsible for checking this before applying.
+    """
+
+    def __init__(self, ailment_name: str) -> None:
+        super().__init__(f"Ailment '{ailment_name}' is not compatible with current target ailments.")
+        self.ailment_name = ailment_name

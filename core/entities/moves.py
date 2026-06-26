@@ -30,6 +30,14 @@ class AilmentEnum(Enum):
     LEECH_SEED = "leech-seed"
 
 
+NOT_AILMENT = {
+    AilmentEnum.NONE,
+    AilmentEnum.UNKNOWN,
+    # Not contemplated
+    AilmentEnum.LEECH_SEED,
+}
+
+
 MAJOR_AILMENTS = {
     AilmentEnum.BURN,
     AilmentEnum.FREEZE,
