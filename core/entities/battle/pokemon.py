@@ -23,11 +23,13 @@ class BattlePokemon:
         current_stats: BattlePokemonStats | None = None,
         current_moves: tuple[BattlePokemonMove, ...] | None = None,
     ) -> None:
-        self.pokemon = pokemon
-        self.level = level
-        self.current_ailments = current_ailments or []
-        self.current_stats = current_stats or pokemon.stats
-        self.current_moves = current_moves or self._select_initial_moves(pokemon)
+        self.pokemon: Pokemon = pokemon
+        self.level: int = level
+        self.current_ailments: list[AilmentEnum] = current_ailments or []
+        self.current_stats: BattlePokemonStats = current_stats or pokemon.stats
+        self.current_moves: tuple[BattlePokemonMove, ...] = current_moves or self._select_initial_moves(
+            pokemon
+        )
 
     def get_current_major_ailment(self) -> AilmentEnum:
         for ailment in self.current_ailments:
