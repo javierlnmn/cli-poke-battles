@@ -6,6 +6,7 @@ from core.entities.battle.move import BattlePokemonMove
 from core.entities.battle.move_handlers import BattleMoveHandler, BattleMoveHandlerResolver
 from core.entities.battle.pokemon import BattlePokemon
 from core.entities.battle.state_manager import BattleStateManager
+from core.entities.moves import AilmentEnum
 from core.entities.pokemon import PokemonMove
 from core.entities.stats import PokemonStatEnum
 
@@ -72,7 +73,6 @@ class Battle:
     ) -> tuple[PokemonOrderSlot, PokemonOrderSlot]:
         return (
             self._check_moves_priorities(move1, move2)
-            # TODO: Check ailments
             or self._check_battle_pokemons_speed()
             or self._order_by_random_tiebreak()
         )
@@ -90,7 +90,19 @@ class Battle:
 
     def _check_battle_pokemons_speed(self) -> tuple[PokemonOrderSlot, PokemonOrderSlot] | None:
         speed1 = self.battle_pokemon1.current_stat_stages.get_effective_stat(PokemonStatEnum.SPEED)
+        speed1 = (  # Paralysed Pokémon effective speed is reduced by 25%
+            int(speed1 * (3 / 4))
+            if AilmentEnum.PARALYSIS in self.battle_pokemon1.current_ailments
+            else speed1
+        )
+
         speed2 = self.battle_pokemon2.current_stat_stages.get_effective_stat(PokemonStatEnum.SPEED)
+        speed2 = (
+            int(speed2 * (3 / 4))
+            if AilmentEnum.PARALYSIS in self.battle_pokemon2.current_ailments
+            else speed2
+        )
+
         if speed1 > speed2:
             return (PokemonOrderSlot.POKEMON_1_SLOT, PokemonOrderSlot.POKEMON_2_SLOT)
         elif speed2 > speed1:

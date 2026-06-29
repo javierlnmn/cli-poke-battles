@@ -100,6 +100,3 @@ dmypy.json
 .pytype/
 
 cython_debug/
-
-todo.txt
-test.py
