@@ -10,10 +10,12 @@ from core.entities.battle.events import (
     BattleEventHeal,
     BattleEventMoveUsed,
     BattleEventStatChange,
+    BattleEventStatMaxed,
     BattleEventStatsRestore,
 )
 from core.entities.battle.move import BattlePokemonMove
 from core.entities.battle.pokemon import BattlePokemon
+from core.entities.battle.stats import StageLimit
 from core.entities.moves import MAJOR_AILMENTS, AilmentEnum, MoveStatChange
 from core.exceptions.battle import MajorAilmentAlreadyActiveError
 
@@ -42,7 +44,7 @@ class BattleStateManager:
         )
 
     def apply_damage(self, battle_pokemon: BattlePokemon, health_points: int):
-        battle_pokemon.current_stats.hp -= health_points
+        battle_pokemon.current_hp -= health_points
         self.current_turn.append(
             BattleEvent(
                 kind=BattleEventDamage,
@@ -54,7 +56,7 @@ class BattleStateManager:
         )
 
     def apply_heal(self, battle_pokemon: BattlePokemon, health_points: int):
-        battle_pokemon.current_stats.hp += health_points
+        battle_pokemon.current_hp += health_points
         self.current_turn.append(
             BattleEvent(
                 kind=BattleEventHeal,
@@ -120,27 +122,41 @@ class BattleStateManager:
         )
 
     def apply_stat_change(self, battle_pokemon: BattlePokemon, stat_change: MoveStatChange):
-        new_value = battle_pokemon.current_stats.get_stat(stat_change.stat) + stat_change.change
-        battle_pokemon.current_stats.set_stat(stat_change.stat, new_value)
-
-        verb = "rose" if stat_change.change > 0 else "fell"
-        stat_label = stat_change.stat.value.lower().replace("-", " ")
-        self.current_turn.append(
-            BattleEvent(
-                kind=BattleEventStatChange,
-                text_detail=(f"{battle_pokemon.pokemon.name}'s {stat_label} {verb}!"),
-                payload=BattleEventStatChange(
-                    battle_pokemon=battle_pokemon,
-                    stat=stat_change.stat,
-                    amount=stat_change.change,
-                ),
-            )
+        stage_limit = battle_pokemon.current_stat_stages.update_stat_stage(
+            stat=stat_change.stat,
+            change=stat_change.change,
         )
 
+        if not stage_limit:
+            verb = "rose" if stat_change.change > 0 else "fell"
+            stat_label = stat_change.stat.value.lower().replace("-", " ")
+            self.current_turn.append(
+                BattleEvent(
+                    kind=BattleEventStatChange,
+                    text_detail=(f"{battle_pokemon.pokemon.name}'s {stat_label} {verb}!"),
+                    payload=BattleEventStatChange(
+                        battle_pokemon=battle_pokemon,
+                        stat=stat_change.stat,
+                        amount=stat_change.change,
+                    ),
+                )
+            )
+        else:
+            verb = "rise" if stage_limit == StageLimit.TOP > 0 else "fall"
+            self.current_turn.append(
+                BattleEvent(
+                    kind=BattleEventStatMaxed,
+                    text_detail=(f"{battle_pokemon.pokemon.name}'s {stat_label} cannot {verb} more!"),
+                    payload=BattleEventStatMaxed(
+                        battle_pokemon=battle_pokemon,
+                        stat=stat_change.stat,
+                        limit=stage_limit,
+                    ),
+                )
+            )
+
     def restore_stats(self, battle_pokemon: BattlePokemon):
-        original_stats_except_hp = battle_pokemon.pokemon.stats
-        original_stats_except_hp.hp = battle_pokemon.current_stats.hp
-        battle_pokemon.current_stats = original_stats_except_hp
+        battle_pokemon.current_stat_stages.restore_stages()
 
         self.current_turn.append(
             BattleEvent(
@@ -156,7 +172,8 @@ class BattleStateManager:
         """
         Same as restore stats, but also includes HP
         """
-        battle_pokemon.current_stats = battle_pokemon.pokemon.stats
+        battle_pokemon.current_stat_stages.restore_stages()
+        battle_pokemon.current_hp = battle_pokemon.pokemon.stats.hp
 
         self.current_turn.append(
             BattleEvent(

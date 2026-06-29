@@ -12,7 +12,7 @@ from core.entities.moves import (
     PokemonMove,
     TargetEnum,
 )
-from core.entities.pokemon import StatEnum
+from core.entities.stats import PokemonStatEnum
 from core.exceptions import ResourceNotFoundError
 from core.repositories.types import TypeRepository
 from core.schemas import MoveJson
@@ -93,7 +93,7 @@ class MoveRepository:
             stat_changes=[
                 MoveStatChange(
                     change=stat_change["change"],
-                    stat=StatEnum(stat_change["stat"]["name"]),
+                    stat=PokemonStatEnum(stat_change["stat"]["name"]),
                     chance=meta["stat_chance"],
                 )
                 for stat_change in data["stat_changes"]

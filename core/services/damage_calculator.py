@@ -5,6 +5,7 @@ from random import randrange
 from core.entities.battle.move import BattlePokemonMove
 from core.entities.battle.pokemon import BattlePokemon
 from core.entities.moves import DamageClassEnum
+from core.entities.stats import PokemonStatEnum
 from core.entities.types import PokemonType
 from core.exceptions import StatusMoveDamageError, UnsupportedDamageClassError
 
@@ -82,11 +83,11 @@ class Gen1DamageCalculator(DamageCalculator):
         if self.battle_move.move.damage_class == DamageClassEnum.STATUS:
             raise StatusMoveDamageError(self.battle_move.move.name)
         elif self.battle_move.move.damage_class == DamageClassEnum.PHYSICAL:
-            att = self.attacker.current_stats.attack
-            defn = self.target.current_stats.defense
+            att = self.attacker.current_stat_stages.get_effective_stat(PokemonStatEnum.ATTACK)
+            defn = self.target.current_stat_stages.get_effective_stat(PokemonStatEnum.DEFENSE)
         elif self.battle_move.move.damage_class == DamageClassEnum.SPECIAL:
-            att = self.attacker.current_stats.sp_attack
-            defn = self.target.current_stats.sp_defense
+            att = self.attacker.current_stat_stages.get_effective_stat(PokemonStatEnum.SP_ATTACK)
+            defn = self.target.current_stat_stages.get_effective_stat(PokemonStatEnum.SP_ATTACK)
         else:
             raise UnsupportedDamageClassError(self.battle_move.move.damage_class.value)
 

@@ -7,6 +7,7 @@ from core.entities.battle.move_handlers import BattleMoveHandler, BattleMoveHand
 from core.entities.battle.pokemon import BattlePokemon
 from core.entities.battle.state_manager import BattleStateManager
 from core.entities.pokemon import PokemonMove
+from core.entities.stats import PokemonStatEnum
 
 
 class PokemonOrderSlot(Enum):
@@ -88,8 +89,8 @@ class Battle:
         return None
 
     def _check_battle_pokemons_speed(self) -> tuple[PokemonOrderSlot, PokemonOrderSlot] | None:
-        speed1 = self.battle_pokemon1.current_stats.speed
-        speed2 = self.battle_pokemon2.current_stats.speed
+        speed1 = self.battle_pokemon1.current_stat_stages.get_effective_stat(PokemonStatEnum.SPEED)
+        speed2 = self.battle_pokemon2.current_stat_stages.get_effective_stat(PokemonStatEnum.SPEED)
         if speed1 > speed2:
             return (PokemonOrderSlot.POKEMON_1_SLOT, PokemonOrderSlot.POKEMON_2_SLOT)
         elif speed2 > speed1:

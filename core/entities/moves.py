@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from core.entities.pokemon import StatEnum
+from core.entities.stats import PokemonStatEnum
 from core.entities.types import PokemonType
 
 
@@ -79,7 +79,7 @@ class TargetEnum(Enum):
 
 @dataclass(frozen=True)
 class MoveStatChange:
-    stat: StatEnum
+    stat: PokemonStatEnum
     change: int
     chance: int
 

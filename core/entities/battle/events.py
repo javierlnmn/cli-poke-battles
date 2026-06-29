@@ -2,8 +2,9 @@ from dataclasses import dataclass
 
 from core.entities.battle.move import BattlePokemonMove
 from core.entities.battle.pokemon import BattlePokemon
+from core.entities.battle.stats import StageLimit
 from core.entities.moves import AilmentEnum
-from core.entities.pokemon import StatEnum
+from core.entities.stats import PokemonStatEnum
 
 
 @dataclass(frozen=True)
@@ -50,8 +51,15 @@ class BattleEventFainted:
 @dataclass(frozen=True)
 class BattleEventStatChange:
     battle_pokemon: BattlePokemon
-    stat: StatEnum
+    stat: PokemonStatEnum
     amount: int
+
+
+@dataclass(frozen=True)
+class BattleEventStatMaxed:
+    battle_pokemon: BattlePokemon
+    stat: PokemonStatEnum
+    limit: StageLimit
 
 
 @dataclass(frozen=True)

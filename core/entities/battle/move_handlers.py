@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-from core.entities.moves import AilmentEnum, NOT_AILMENT
 from core.entities.battle.move import BattlePokemonMove
 from core.entities.battle.pokemon import BattlePokemon
 from core.entities.battle.state_manager import BattleStateManager
+from core.entities.moves import NOT_AILMENT, AilmentEnum
 from core.services.damage_calculator import Gen1DamageCalculator
 from core.utils.random import roll_percentage
 

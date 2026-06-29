@@ -1,16 +1,8 @@
-from dataclasses import dataclass
-
 from core.entities.battle.move import BattlePokemonMove
-from core.entities.moves import MAJOR_AILMENTS, AilmentEnum, StatEnum
-from core.entities.pokemon import Pokemon, PokemonStats
+from core.entities.battle.stats import BattlePokemonStatsStages
+from core.entities.moves import MAJOR_AILMENTS, AilmentEnum
+from core.entities.pokemon import Pokemon
 from core.exceptions import IllegalBattleMoveError
-
-
-@dataclass
-class BattlePokemonStats(PokemonStats):
-    def set_stat(self, stat: StatEnum, value: int) -> None:
-        field = self._STAT_FIELD_OVERRIDES.get(stat, stat.value)
-        setattr(self, field, value)
 
 
 class BattlePokemon:
@@ -19,16 +11,20 @@ class BattlePokemon:
         pokemon: Pokemon,
         *,
         level: int = 50,
+        current_hp: int | None = None,
         current_ailments: list[AilmentEnum] = [],
-        current_stats: BattlePokemonStats | None = None,
+        current_stat_stages: BattlePokemonStatsStages | None = None,
         current_moves: tuple[BattlePokemonMove, ...] | None = None,
     ) -> None:
         self.pokemon: Pokemon = pokemon
         self.level: int = level
+        self.current_hp = current_hp or pokemon.stats.hp
         self.current_ailments: list[AilmentEnum] = current_ailments or []
-        self.current_stats: BattlePokemonStats = current_stats or pokemon.stats
-        self.current_moves: tuple[BattlePokemonMove, ...] = current_moves or self._select_initial_moves(
-            pokemon
+        self.current_stat_stages: BattlePokemonStatsStages = current_stat_stages or (
+            BattlePokemonStatsStages(base_stats=pokemon.stats)
+        )
+        self.current_moves: tuple[BattlePokemonMove, ...] = current_moves or (
+            self._select_initial_moves(pokemon)
         )
 
     def get_current_major_ailment(self) -> AilmentEnum:
